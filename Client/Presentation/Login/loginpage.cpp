@@ -19,3 +19,9 @@ void LoginPage::on_pushButton_sSignUp_clicked()
     emit signUpRequested();
 }
 
+
+void LoginPage::on_pushButton_ForgotPassword_clicked()
+{
+    emit resetPasswordRequested();
+}
+

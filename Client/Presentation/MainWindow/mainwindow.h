@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "../Login/loginpage.h"
 #include "../SignUp/signuppage.h"
+#include "../ResetPassword/resetpasswordpage.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,7 @@ private slots:
 
     void showSignupPage();
     void showLoginPage();
+    void showResetPasswordPage();
 
 private:
 
@@ -29,6 +31,8 @@ private:
     LoginPage *loginPage;
 
     SignUp *signUpPage;
+
+    ResetPasswordPage *resetPasswordPage;
 };
 
 #endif // MAINWINDOW_H

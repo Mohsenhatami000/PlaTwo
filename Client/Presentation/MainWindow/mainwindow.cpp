@@ -10,9 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     loginPage = new LoginPage(this);
     signUpPage = new SignUp(this);
+    resetPasswordPage = new ResetPasswordPage(this);
 
     ui->stackedWidget->addWidget(signUpPage);
     ui->stackedWidget->addWidget(loginPage);
+    ui->stackedWidget->addWidget(resetPasswordPage);
 
     ui->stackedWidget->setCurrentWidget(loginPage);
 
@@ -27,6 +29,16 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showLoginPage);
 
+    connect(loginPage,
+            &LoginPage::resetPasswordRequested,
+            this,
+            &MainWindow::showResetPasswordPage);
+
+    connect(resetPasswordPage,
+            &ResetPasswordPage::backToLoginRequested,
+            this,
+            &MainWindow::showLoginPage);
+
 }
 
 void MainWindow::showSignupPage(){
@@ -36,6 +48,10 @@ void MainWindow::showSignupPage(){
 
 void MainWindow::showLoginPage(){
     ui->stackedWidget->setCurrentWidget(loginPage);
+}
+
+void MainWindow::showResetPasswordPage(){
+    ui->stackedWidget->setCurrentWidget(resetPasswordPage);
 }
 
 MainWindow::~MainWindow()

@@ -16,10 +16,13 @@ public:
     ~LoginPage();
 signals:
     void signUpRequested();
+    void resetPasswordRequested();
 
 private slots:
 
     void on_pushButton_sSignUp_clicked();
+
+    void on_pushButton_ForgotPassword_clicked();
 
 private:
     Ui::LoginPage *ui;
