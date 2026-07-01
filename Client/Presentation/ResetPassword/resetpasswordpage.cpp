@@ -22,6 +22,6 @@ void ResetPasswordPage::on_pushButton_back_clicked()
 
 void ResetPasswordPage::on_pushButton_reset_password_clicked()
 {
-    emit backToLoginRequested();
+    emit resetPasswordRequested();
 }
 

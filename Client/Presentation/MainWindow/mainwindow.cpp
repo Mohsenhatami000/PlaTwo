@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     loginPage = new LoginPage(this);
-    signUpPage = new SignUp(this);
+    signUpPage = new SignUpPage(this);
     resetPasswordPage = new ResetPasswordPage(this);
     mainMenuPage = new MainMenuPage(this);
     editProfilePage = new EditProfilePage(this);
@@ -34,9 +34,14 @@ MainWindow::MainWindow(QWidget *parent)
             &MainWindow::showSignupPage);
 
     connect(signUpPage,
-            &SignUp::backToLoginRequested,
+            &SignUpPage::backToLoginRequested,
             this,
             &MainWindow::showLoginPage);
+
+    connect(signUpPage,
+            &SignUpPage::signUpRequested,
+            this,
+            &MainWindow::showLoginPage); // Must be edited later
 
     connect(loginPage,
             &LoginPage::resetPasswordRequested,
@@ -47,6 +52,11 @@ MainWindow::MainWindow(QWidget *parent)
             &ResetPasswordPage::backToLoginRequested,
             this,
             &MainWindow::showLoginPage);
+
+    connect(resetPasswordPage,
+            &ResetPasswordPage::resetPasswordRequested,
+            this,
+            &MainWindow::showLoginPage); // Must be edited later
 
     connect(loginPage,
             &LoginPage::mainMenuRequested,

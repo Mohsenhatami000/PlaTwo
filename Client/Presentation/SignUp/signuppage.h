@@ -7,16 +7,17 @@ namespace Ui {
 class SignUp;
 }
 
-class SignUp : public QWidget
+class SignUpPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SignUp(QWidget *parent = nullptr);
-    ~SignUp();
+    explicit SignUpPage(QWidget *parent = nullptr);
+    ~SignUpPage();
 
 signals:
     void backToLoginRequested();
+    void signUpRequested();
 
 private slots:
     void on_pushButton_back_clicked();

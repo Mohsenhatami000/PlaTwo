@@ -39,7 +39,7 @@ private:
 
     LoginPage *loginPage;
 
-    SignUp *signUpPage;
+    SignUpPage *signUpPage;
 
     ResetPasswordPage *resetPasswordPage;
 

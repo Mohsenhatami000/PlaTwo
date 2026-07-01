@@ -17,6 +17,7 @@ public:
 
 signals:
     void backToLoginRequested();
+    void resetPasswordRequested();
 
 private slots:
 
