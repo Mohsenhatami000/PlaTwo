@@ -17,12 +17,15 @@ public:
 signals:
     void signUpRequested();
     void resetPasswordRequested();
+    void mainMenuRequested();
 
 private slots:
 
     void on_pushButton_sSignUp_clicked();
 
     void on_pushButton_ForgotPassword_clicked();
+
+    void on_pushButton_Login_clicked();
 
 private:
     Ui::LoginPage *ui;

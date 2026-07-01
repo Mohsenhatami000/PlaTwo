@@ -5,6 +5,7 @@
 #include "../Login/loginpage.h"
 #include "../SignUp/signuppage.h"
 #include "../ResetPassword/resetpasswordpage.h"
+#include "../MainMenu/mainmenupage.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,7 @@ private slots:
     void showSignupPage();
     void showLoginPage();
     void showResetPasswordPage();
+    void showMainMenuPage();
 
 private:
 
@@ -33,6 +35,8 @@ private:
     SignUp *signUpPage;
 
     ResetPasswordPage *resetPasswordPage;
+
+    MainMenuPage *mainMenuPage;
 };
 
 #endif // MAINWINDOW_H

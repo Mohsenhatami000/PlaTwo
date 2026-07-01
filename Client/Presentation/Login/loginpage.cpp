@@ -25,3 +25,9 @@ void LoginPage::on_pushButton_ForgotPassword_clicked()
     emit resetPasswordRequested();
 }
 
+
+void LoginPage::on_pushButton_Login_clicked()
+{
+    emit mainMenuRequested();
+}
+
