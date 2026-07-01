@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>586</width>
-    <height>488</height>
+    <width>746</width>
+    <height>620</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,16 +86,8 @@
 }</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>-1</number>
       </property>
-      <widget class="QWidget" name="page"/>
-      <widget class="QWidget" name="page_3"/>
-      <widget class="QWidget" name="page_4"/>
-      <widget class="QWidget" name="page_5"/>
-      <widget class="QWidget" name="page_6"/>
-      <widget class="QWidget" name="page_7"/>
-      <widget class="QWidget" name="page_8"/>
-      <widget class="QWidget" name="page_2"/>
      </widget>
     </item>
     <item row="1" column="2">
@@ -121,7 +113,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>586</width>
+     <width>746</width>
      <height>21</height>
     </rect>
    </property>
