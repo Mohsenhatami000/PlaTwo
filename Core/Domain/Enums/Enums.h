@@ -7,10 +7,21 @@ enum class DomainError
 	//UserName
 	UserNameEmpty,
 	UserNameInvalidFormat,
-	UserNameInvalidLenth,
+	UserNameInvalidLength,
 	//PhoneNumber
 	PhoneNumberEmpty,
-	PhoneNumberInvalidLenth,
+	PhoneNumberInvalidLength,
 	PhoneNumberInvalidCharacter,
-	PhoneNumberInvalidStart
+	PhoneNumberInvalidStart,
+	//Name
+	NameEmpty,
+	NameInvalidLength,
+	//password
+	PasswordEmpty,
+	PasswordInvalidLength,
+	PasswordContainSpace,
+	PasswordNoUppercase,
+	PasswordNoLowercase,
+	PasswordNoNumber,
+	PasswordNoCharacter
 };

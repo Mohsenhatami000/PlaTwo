@@ -4,14 +4,14 @@
 #include "Exceptions/Exceptions.h"
 #include "Enums/Enums.h"
 #include "Shared/Constants/Constants.h"
-explicit UserName::UserName(const std::string& value) {
+UserName::UserName(const std::string& value) {
 	if (value.empty()) {
 		throw Exceptions(DomainError::UserNameEmpty);
 	}
 	static const std::regex usernamePattern(R"(^(?=[a-zA-Z0-9._]{3,10}$)(?!.*[._]{2})[a-zA-Z][a-zA-Z0-9._]*[a-zA-Z0-9]$)");
 	if (!std::regex_match(value, usernamePattern)) {
 		if (value.length() > USERNAME_MAX_LENTH || value.length() < USERNAME_MIN_LENTH) {
-			throw Exceptions(DomainError::UserNameInvalidLenth);
+			throw Exceptions(DomainError::UserNameInvalidLength);
 		}
 		throw Exceptions(DomainError::UserNameInvalidFormat);
 	}
@@ -19,12 +19,4 @@ explicit UserName::UserName(const std::string& value) {
 }
 const std::string& UserName::userNameValue() const {
 	return username_;
-}
-bool UserName::operator==(const UserName& username) const {
-	if (this->username_ == username.userNameValue()) {
-		return ture;
-	}
-	else {
-		return false;
-	}
 }

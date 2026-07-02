@@ -3,7 +3,7 @@
 #include <string>
 #include "Exceptions/Exceptions.h"
 #include "Enums/Enums.h"
-explicit Email::Email(const std::string& value) {
+Email::Email(const std::string& value) {
 	if (value.empty()) {
 		throw Exceptions(DomainError::EmailEmpty);
 	}
@@ -15,12 +15,4 @@ explicit Email::Email(const std::string& value) {
 }
 const std::string& Email::emailValue() const {
 	return email_;
-}
-bool Email::operator==(const Email& email) const {
-	if (this->email_ == email.emailValue()) {
-		return ture;
-	}
-	else {
-		return false;
-	}
 }

@@ -4,7 +4,7 @@
 #include "Exceptions/Exceptions.h"
 #include "Enums/Enums.h"
 #include "Shared/Constants/Constants.h"
-explicit PhoneNumber::PhoneNumber(const std::string& value) {
+PhoneNumber::PhoneNumber(const std::string& value) {
 	if (value.empty()) {
 		throw Exceptions(DomainError::PhoneNumberEmpty);
 	}
@@ -14,7 +14,7 @@ explicit PhoneNumber::PhoneNumber(const std::string& value) {
 			throw Exceptions(DomainError::PhoneNumberInvalidCharacter);
 		}
 		else if (value.length() != PHONE_NUMBER_MAX_Lenth || value.length() != PHONE_NUMBER_MIN_LENTH) {
-			throw Exceptions(DomainError::PhoneNumberInvalidLenth);
+			throw Exceptions(DomainError::PhoneNumberInvalidLength);
 		}
 		throw Exceptions(DomainError::PhoneNumberInvalidStart);
 	}
@@ -22,12 +22,4 @@ explicit PhoneNumber::PhoneNumber(const std::string& value) {
 }
 const std::string& PhoneNumber::phoneNumerValue() const {
 	return phoneNumber_;
-}
-bool PhoneNumber::operator==(const PhoneNumber& number) const {
-	if (this->phoneNumber_ == number.phoneNumerValue()) {
-		return ture;
-	}
-	else {
-		return false;
-	}
 }

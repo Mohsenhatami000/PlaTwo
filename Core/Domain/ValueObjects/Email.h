@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <string>
 class Email
 {
 private:
@@ -8,6 +8,6 @@ private:
 public:
 	explicit Email(const std::string& value);
 	const std::string& emailValue() const;
-	bool operator==(const Email& email) const;
+	bool operator==(const Email&) const = default;
 
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <string>
 class UserName
 {
 private:
@@ -8,6 +8,6 @@ private:
 public:
 	explicit UserName(const std::string& value);
 	const std::string& userNameValue() const;
-	bool operator==(const UserName& value) const;
+	bool operator==(const UserName&) const = default;
 
 };

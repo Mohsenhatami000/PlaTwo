@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <string>
 class PhoneNumber
 {
 private:
@@ -8,6 +8,6 @@ private:
 public:
 	explicit PhoneNumber(const std::string& value);
 	const std::string& phoneNumerValue() const;
-	bool operator==(const PhoneNumber& number) const;
+	bool operator==(const PhoneNumber&) const = default;
 
 };
