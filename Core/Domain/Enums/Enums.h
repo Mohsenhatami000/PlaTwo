@@ -24,6 +24,9 @@ enum class DomainError
 	PasswordNoLowercase,
 	PasswordNoNumber,
 	PasswordNoCharacter,
+	//Coordinate
+	CoordinateIsNegative,
+	//CoordinateEmpty,
 	//Room state
 	RoomIsClosed,
 	RoomIsFull,

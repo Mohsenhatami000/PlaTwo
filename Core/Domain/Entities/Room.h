@@ -9,7 +9,6 @@ private:
 	std::int64_t roomID_;
 	Player host_;
 	std::optional<Player> guest_;
-	bool hostConnect_;
 	GameType gameType_ ;
 	RoomStatus status_;
 	ConnectionState hostConnection_;
