@@ -18,7 +18,7 @@ PhoneNumber::PhoneNumber(const std::string& value) {
 		}
 		throw Exceptions(DomainError::PhoneNumberInvalidStart);
 	}
-	phoneNumber_ == value;
+	phoneNumber_ = value;
 }
 const std::string& PhoneNumber::phoneNumerValue() const {
 	return phoneNumber_;
