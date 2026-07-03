@@ -6,7 +6,7 @@ Name::Name(const std::string& name) {
 	if (name.empty()) {
 		throw Exceptions(DomainError::NameEmpty);
 	}
-	else if (name.length() > NAME_MAX_LENTH || name.length() < NAME_MIN_LENTH) {
+	else if (name.length() > NAME_MAX_LENGTH || name.length() < NAME_MIN_LENGTH) {
 		throw Exceptions(DomainError::NameInvalidLength);
 	}
 	name_ = name;

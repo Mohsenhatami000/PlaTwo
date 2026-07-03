@@ -10,7 +10,7 @@ Password::Password(const std::string& pass) {
 	if (pass.empty()) {
 		throw Exceptions(DomainError::PasswordEmpty);
 	}
-	if (pass.length() != PASSWORD_LENTH) {
+	if (pass.length() <= PASSWORD_MIN_LENGTH || pass.length() >= PASSWORD_MAX_LENGTH) {
 		throw Exceptions(DomainError::PasswordInvalidLength);
 	}
 	bool hasUpper = std::ranges::any_of(pass,[](unsigned char c) { return std::isupper(c); });

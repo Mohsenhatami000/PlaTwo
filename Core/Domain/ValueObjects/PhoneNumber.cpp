@@ -13,7 +13,7 @@ PhoneNumber::PhoneNumber(const std::string& value) {
 		if (!std::all_of(value.begin(), value.end(), ::isdigit)) {
 			throw Exceptions(DomainError::PhoneNumberInvalidCharacter);
 		}
-		else if (value.length() != PHONE_NUMBER_MAX_LENTH || value.length() != PHONE_NUMBER_MIN_LENTH) {
+		else if (value.length() != PHONE_NUMBER_MAX_LENGTH && value.length() != PHONE_NUMBER_MIN_LENGTH) {
 			throw Exceptions(DomainError::PhoneNumberInvalidLength);
 		}
 		throw Exceptions(DomainError::PhoneNumberInvalidStart);

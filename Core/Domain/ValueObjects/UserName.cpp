@@ -10,7 +10,7 @@ UserName::UserName(const std::string& value) {
 	}
 	static const std::regex usernamePattern(R"(^(?=[a-zA-Z0-9._]{3,10}$)(?!.*[._]{2})[a-zA-Z][a-zA-Z0-9._]*[a-zA-Z0-9]$)");
 	if (!std::regex_match(value, usernamePattern)) {
-		if (value.length() > USERNAME_MAX_LENTH || value.length() < USERNAME_MIN_LENTH) {
+		if (value.length() > USERNAME_MAX_LENGTH || value.length() < USERNAME_MIN_LENGTH) {
 			throw Exceptions(DomainError::UserNameInvalidLength);
 		}
 		throw Exceptions(DomainError::UserNameInvalidFormat);
