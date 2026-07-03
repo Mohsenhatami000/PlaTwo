@@ -1,7 +1,10 @@
 #include "Exceptions.h"
-Exceptions::Exceptions(Exceptions ex) :exception_(ex) {
+Exceptions::Exceptions(DomainError error):error_(error){
 
 }
-Exceptions Exceptions::error() const {
-	return exception_;
+DomainError Exceptions::error() const noexcept{
+	return error_;
+}
+const char* Exceptions::what() const noexcept{
+	return "Domain exception";
 }

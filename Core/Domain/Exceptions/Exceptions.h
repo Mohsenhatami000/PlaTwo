@@ -1,11 +1,13 @@
 #pragma once
 #include <exception>
+#include "Domain/Enums/Enums.h"
 class Exceptions : public std::exception
 {
 private:
-	Exceptions exception_;
+	DomainError error_;
 
 public:
-	Exceptions(Exceptions ex);
-	Exceptions error() const;
+	explicit Exceptions(DomainError error);
+	DomainError error() const noexcept;
+	const char* what() const noexcept override;
 };
