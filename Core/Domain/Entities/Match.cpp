@@ -1,5 +1,5 @@
 #include "Match.h"
-#include "Exceptions/Exceptions.h"
+#include "Domain/Exceptions/Exceptions.h"
 Match::Match(std::int64_t id, const Player& host, const Player& guest, GameType type):matchID_(id),host_(host)
             ,guest_(guest),gameType_(type),status_(MatchStatus::NotStarted){
 

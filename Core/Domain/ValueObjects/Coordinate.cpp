@@ -1,6 +1,6 @@
 #include "Coordinate.h"
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 Coordinate::Coordinate(int row, int column) {
 	if (row < 0 || column < 0) {
 		throw Exceptions(DomainError::CoordinateIsNegative);

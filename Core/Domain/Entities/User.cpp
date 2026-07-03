@@ -24,7 +24,7 @@ const PasswordHash& User::uPasswordHash() const noexcept {
 }
 bool User::changeName(const Name& name) {
 	if (name == u_name_) {
-		return false
+		return false;
 	}
 	u_name_ = name;
 	return true;

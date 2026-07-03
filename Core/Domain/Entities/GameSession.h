@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <chrono>
-#include "Enums/Enums.h"
+#include "Domain/Enums/Enums.h"
 class GameSession //Edits for miniGames
 {
 private:

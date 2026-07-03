@@ -3,7 +3,7 @@ GameSession::GameSession(std::int64_t id, Turn turn) :sessionID_(id), turn_(turn
 
 }
 std::int64_t GameSession::sessionID() const noexcept{
-	return std::int64_t() sessionID_;
+	return sessionID_;
 }
 Turn GameSession::turn() const noexcept{
 	return turn_;

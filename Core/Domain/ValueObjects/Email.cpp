@@ -1,8 +1,8 @@
 #include "Email.h"
 #include <regex>
 #include <string>
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 Email::Email(const std::string& value) {
 	if (value.empty()) {
 		throw Exceptions(DomainError::EmailEmpty);

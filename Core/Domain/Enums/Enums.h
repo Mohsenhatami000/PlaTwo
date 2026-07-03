@@ -40,7 +40,9 @@ enum class DomainError
 	MatchAlreadyStarted,
 	MatchIsNotPlaying,
 	MatchPaused,
-	MatchEneded
+	MatchEneded,
+	//Player 
+	PlayerNotFound
 };
 enum class GameType
 {

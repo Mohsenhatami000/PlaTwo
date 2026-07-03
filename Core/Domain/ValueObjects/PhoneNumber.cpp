@@ -1,8 +1,8 @@
 #include "PhoneNumber.h"
 #include <regex>
 #include <string>
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 #include "Shared/Constants/Constants.h"
 PhoneNumber::PhoneNumber(const std::string& value) {
 	if (value.empty()) {
@@ -13,7 +13,7 @@ PhoneNumber::PhoneNumber(const std::string& value) {
 		if (!std::all_of(value.begin(), value.end(), ::isdigit)) {
 			throw Exceptions(DomainError::PhoneNumberInvalidCharacter);
 		}
-		else if (value.length() != PHONE_NUMBER_MAX_Lenth || value.length() != PHONE_NUMBER_MIN_LENTH) {
+		else if (value.length() != PHONE_NUMBER_MAX_LENTH || value.length() != PHONE_NUMBER_MIN_LENTH) {
 			throw Exceptions(DomainError::PhoneNumberInvalidLength);
 		}
 		throw Exceptions(DomainError::PhoneNumberInvalidStart);

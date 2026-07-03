@@ -1,8 +1,8 @@
 #include "UserName.h"
 #include <regex>
 #include <string>
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 #include "Shared/Constants/Constants.h"
 UserName::UserName(const std::string& value) {
 	if (value.empty()) {

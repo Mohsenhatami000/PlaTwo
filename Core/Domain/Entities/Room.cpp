@@ -1,5 +1,5 @@
 #include "Room.h"
-#include "Exceptions/Exceptions.h"
+#include "Domain/Exceptions/Exceptions.h"
 Room::Room(std::int64_t id, const Player& host, GameType type):roomID_(id),host_(host),gameType_(type),guest_(std::nullopt),
            hostConnection_(ConnectionState::Connected),guestConnection_(std::nullopt), status_(RoomStatus::Waiting){
 
@@ -14,7 +14,7 @@ bool Room::join(const Player& player) {
 	if (guest_.has_value()){
 		throw Exceptions(DomainError::RoomIsFull);
 	}
-	if (player.UID() == host_.UID()) {
+	if (player.pID() == host_.pID()) {
 		throw Exceptions(DomainError::RoomNotHostTwice);
 	}
 	guest_ = player;
@@ -23,11 +23,11 @@ bool Room::join(const Player& player) {
 	return true;
 }
 void Room::leave(const std::int64_t id) {
-	if (id == host_.UID()) {
+	if (id == host_.pID()) {
 		close();
 		return;
 	}
-	if (guest_.has_value() && id == guest_.pID()) {
+	if (guest_.has_value() && id == guest_->pID()) {
 		guest_.reset();
 		guestConnection_.reset();
 		status_ = RoomStatus::Waiting;
@@ -48,7 +48,7 @@ bool Room::canStart() const {
 	if (*guestConnection_ == ConnectionState::Disconnected) {
 		return false;
 	}
-	return host_.isReady() && guest_->isReady();
+	return host_.pIsReady() && guest_->pIsReady();
 }
 void Room::start() {
 	if (!canStart()) {

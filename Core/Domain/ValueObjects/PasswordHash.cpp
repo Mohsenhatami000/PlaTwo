@@ -1,6 +1,6 @@
 #include "PasswordHash.h"
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 PasswordHash::PasswordHash(const std::string& passhash){
 	if (passhash.empty()) {
 		throw Exceptions(DomainError::PasswordEmpty);

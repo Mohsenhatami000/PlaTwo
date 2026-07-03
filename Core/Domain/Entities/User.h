@@ -1,10 +1,10 @@
 #pragma once
 #include <cstdint>
-#include "ValueObjects/Email.h"
-#include "ValueObjects/Name.h"
-#include "ValueObjects/PhoneNumber.h"
-#include "ValueObjects/UserName.h"
-#include "ValueObjects/PasswordHash.h"
+#include "Domain/ValueObjects/Email.h"
+#include "Domain/ValueObjects/Name.h"
+#include "Domain/ValueObjects/PhoneNumber.h"
+#include "Domain/ValueObjects/UserName.h"
+#include "Domain/ValueObjects/PasswordHash.h"
 class User
 {
 private:

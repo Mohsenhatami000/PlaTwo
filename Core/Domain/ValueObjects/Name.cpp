@@ -1,6 +1,6 @@
 #include "Name.h"
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 #include "Shared/Constants/Constants.h"
 Name::Name(const std::string& name) {
 	if (name.empty()) {

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <chrono>
-#include "Enums/Enums.h"
+#include "Domain/Enums/Enums.h"
 class History
 {
 private:
@@ -14,7 +14,7 @@ private:
 	std::chrono::system_clock::time_point endTime_;
 
 public:
-	History::History(std::int64_t id, std::int64_t hostid, std::int64_t guestid, GameType type,
+	History(std::int64_t id, std::int64_t hostid, std::int64_t guestid, GameType type,
 		MatchResult res ,std::chrono::system_clock::time_point start, std::chrono::system_clock::time_point end);
 	std::int64_t hID() const noexcept;
 	std::int64_t hostID() const noexcept;
@@ -23,5 +23,5 @@ public:
 	MatchResult result() const noexcept;
 	const std::chrono::system_clock::time_point& startTime() const noexcept;
 	const std::chrono::system_clock::time_point& endTime() const noexcept;
-	std::chrono::seconds duration() const;
+	std::chrono::seconds duration() const noexcept;
 };
