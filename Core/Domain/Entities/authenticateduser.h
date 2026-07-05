@@ -7,17 +7,17 @@
 
 class AuthenticatedUser
 {
-    std::int64_t ID_;
-    Name name_;
-    UserName username_;
+    std::int64_t u_ID_;
+    Name u_name_;
+    UserName u_username_;
 
 public:
 
     AuthenticatedUser(std::int64_t id, const Name& name, const UserName& username);
 
-    std::int64_t ID() const noexcept;
-    const Name& Name() const noexcept;
-    const UserName& UserName() const noexcept;
+    std::int64_t id() const noexcept;
+    const Name& name() const noexcept;
+    const UserName& username() const noexcept;
 
     bool changeName(const Name& name);
     bool changeUserName(const UserName& username);
