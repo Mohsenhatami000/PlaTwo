@@ -1,4 +1,6 @@
-add_library(Core STATIC)
+add_library(Core STATIC
+    Domain/Entities/authenticateduser.h Domain/Entities/authenticateduser.cpp
+    Domain/Interfaces/Services/isessioncontext.h Domain/Interfaces/Services/isessioncontext.cpp)
 
 target_sources(Core PRIVATE
 
