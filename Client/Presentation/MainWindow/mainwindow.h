@@ -9,6 +9,12 @@
 #include "../EditProfile/editprofilepage.h"
 #include "../GameMenu/gamemenupage.h"
 #include "../Lobby/lobbypage.h"
+#include "Domain/Interfaces/Repositories/IUserRepository.h"
+#include "Domain/Interfaces/Services/iloginpresenter.h"
+#include "../Login/QtLoginpresenter.h"
+#include "Application/UseCases/Login/loginusecase.h"
+#include "Domain/Interfaces/Services/IHasher.h"
+#include "Domain/Interfaces/Services/isessioncontext.h"
 
 
 namespace Ui {
@@ -50,6 +56,19 @@ private:
     GameMenuPage *gameMenuPage_;
 
     LobbyPage *lobbyPage_;
+
+    IUserRepository *userRepo_;
+
+    ILoginPresenter *loginPresenter_;
+
+    QtLoginPresenter *qtLoginPresenter_;
+
+    LoginUseCase *loginUseCase_;
+
+    IHasher *hasher_;
+
+    ISessionContext *session_;
+
 };
 
 #endif // MAINWINDOW_H

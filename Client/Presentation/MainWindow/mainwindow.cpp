@@ -1,5 +1,6 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "Presentation/MainWindow/ui_mainwindow.h"
+#include "../Login/QtLoginpresenter.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,14 +9,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    loginPage_ = new LoginPage(this);
+
     signUpPage_ = new SignUpPage(this);
     resetPasswordPage_ = new ResetPasswordPage(this);
     mainMenuPage_ = new MainMenuPage(this);
     editProfilePage_ = new EditProfilePage(this);
     gameMenuPage_ = new GameMenuPage(this);
     lobbyPage_ = new LobbyPage(this);
-
+    loginPage_ = new LoginPage(this);
+    qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
+    loginPresenter_ = qtLoginPresenter_;
+    // userRepo_ = new  ; concrete class implemented later
+    // hasher_ = new ; concrete class implemented later;
+    // session_ = new ; concrete class implemented later;
+    loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
+    loginPage_->setLoginUseCase(loginUseCase_);
 
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);
@@ -58,8 +66,8 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showLoginPage); // Must be edited later
 
-    connect(loginPage_,
-            &LoginPage::mainMenuRequested,
+    connect(qtLoginPresenter_,
+            &QtLoginPresenter::LoginSucceed,
             this,
             &MainWindow::showMainMenuPage);
 

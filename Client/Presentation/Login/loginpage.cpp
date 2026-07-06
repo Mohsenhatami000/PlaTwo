@@ -1,5 +1,5 @@
 #include "loginpage.h"
-#include "ui_loginpage.h"
+#include "Presentation/Login/ui_loginpage.h"
 
 LoginPage::LoginPage(QWidget *parent)
     : QWidget(parent)
@@ -13,6 +13,9 @@ LoginPage::~LoginPage()
     delete ui;
 }
 
+void LoginPage::setLoginUseCase(LoginUseCase *loginUseCase){
+    loginUseCase_ = loginUseCase;
+}
 
 void LoginPage::on_pushButton_sSignUp_clicked()
 {
@@ -28,6 +31,6 @@ void LoginPage::on_pushButton_ForgotPassword_clicked()
 
 void LoginPage::on_pushButton_Login_clicked()
 {
-    emit mainMenuRequested();
-}
 
+    loginUseCase_->execute(ui->lineEdit_UserName->text().toStdString(), ui->lineEdit_Password->text().toStdString());
+}

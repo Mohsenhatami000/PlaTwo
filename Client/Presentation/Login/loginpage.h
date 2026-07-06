@@ -2,6 +2,7 @@
 #define LOGINPAGE_H
 
 #include <QWidget>
+#include <Application/UseCases/Login/loginusecase.h>
 
 namespace Ui {
 class LoginPage;
@@ -10,10 +11,13 @@ class LoginPage;
 class LoginPage : public QWidget
 {
     Q_OBJECT
+    LoginUseCase *loginUseCase_;
 
 public:
     explicit LoginPage(QWidget *parent = nullptr);
     ~LoginPage();
+    void setLoginUseCase(LoginUseCase *loginUseCase);
+
 signals:
     void signUpRequested();
     void resetPasswordRequested();

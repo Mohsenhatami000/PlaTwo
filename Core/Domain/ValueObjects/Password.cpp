@@ -1,11 +1,12 @@
 #include "Password.h"
 #include <string>
-#include "Exceptions/Exceptions.h"
-#include "Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+#include "Domain/Enums/Enums.h"
 #include "Shared/Constants/Constants.h"
-#include <ranges>
 #include <algorithm>
 #include <cctype>
+
+
 Password::Password(const std::string& pass) {
 	if (pass.empty()) {
 		throw Exceptions(DomainError::PasswordEmpty);
