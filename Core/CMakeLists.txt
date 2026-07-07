@@ -2,7 +2,12 @@ add_library(Core STATIC
     Domain/Entities/authenticateduser.h Domain/Entities/authenticateduser.cpp
     Domain/Interfaces/Services/isessioncontext.h Domain/Interfaces/Services/isessioncontext.cpp
     Application/UseCases/Login/loginusecase.h Application/UseCases/Login/loginusecase.cpp
-    Domain/Interfaces/Services/iloginpresenter.h Domain/Interfaces/Services/iloginpresenter.cpp)
+    Domain/Interfaces/Services/iloginpresenter.h Domain/Interfaces/Services/iloginpresenter.cpp
+    Domain/Interfaces/Services/ieditprofilepresenter.h Domain/Interfaces/Services/ieditprofilepresenter.cpp
+    Application/UseCases/EditProfile/editprofileusecase.h Application/UseCases/EditProfile/editprofileusecase.cpp
+    Application/UseCases/EditProfile/loadeditprofileusecase.h Application/UseCases/EditProfile/loadeditprofileusecase.cpp
+    Application/DTO/Auth/EditProfileRequest.h
+)
 
 target_sources(Core PRIVATE
 

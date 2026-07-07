@@ -11,7 +11,7 @@ public:
 
     virtual bool isAuthenticated() const noexcept = 0;
 
-    virtual const std::optional<AuthenticatedUser> currentUser() const noexcept = 0;
+    virtual const std::optional<AuthenticatedUser> currentUser() noexcept = 0;
 
     virtual void login(const AuthenticatedUser& user) = 0;
 

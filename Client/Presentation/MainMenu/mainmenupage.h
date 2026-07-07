@@ -2,6 +2,7 @@
 #define MAINMENUPAGE_H
 
 #include <QWidget>
+#include "Application/UseCases/EditProfile/loadeditprofileusecase.h"
 
 namespace Ui {
 class MainMenuPage;
@@ -10,9 +11,11 @@ class MainMenuPage;
 class MainMenuPage : public QWidget
 {
     Q_OBJECT
+    LoadEditProfileUseCase *loadEditProfileUseCase_;
 
 public:
     explicit MainMenuPage(QWidget *parent = nullptr);
+    void setLoadEditProfileUseCase(LoadEditProfileUseCase *loadEditProfileUseCase);
     ~MainMenuPage();
 signals:
     void quitRequested();

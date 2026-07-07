@@ -13,7 +13,7 @@ public:
 
     bool isAuthenticated() const noexcept override;
 
-    const std::optional<AuthenticatedUser> currentUser() const noexcept override;
+    const std::optional<AuthenticatedUser> currentUser() noexcept override;
 
     void login(const AuthenticatedUser& user) override;
 

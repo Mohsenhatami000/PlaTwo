@@ -15,6 +15,10 @@
 #include "Application/UseCases/Login/loginusecase.h"
 #include "Domain/Interfaces/Services/IHasher.h"
 #include "Domain/Interfaces/Services/isessioncontext.h"
+#include "Application/UseCases/EditProfile/loadeditprofileusecase.h"
+#include "Domain/Interfaces/Services/ieditprofilepresenter.h"
+#include "../EditProfile/qteditprofilepresenter.h"
+#include "Application/UseCases/EditProfile/editprofileusecase.h"
 
 
 namespace Ui {
@@ -51,7 +55,17 @@ private:
 
     MainMenuPage *mainMenuPage_;
 
+
     EditProfilePage *editProfilePage_;
+
+    LoadEditProfileUseCase *loadEditProfileUseCase_;
+
+    IEditProfilePresenter *editProfilePresenter_;
+
+    QtEditProfilePresenter *qtEditProfilePresenter_;
+
+    EditProfileUseCase *editProfileUseCase_;
+
 
     GameMenuPage *gameMenuPage_;
 

@@ -2,28 +2,36 @@
 #include "Presentation/MainWindow/ui_mainwindow.h"
 #include "../Login/QtLoginpresenter.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-
-    signUpPage_ = new SignUpPage(this);
-    resetPasswordPage_ = new ResetPasswordPage(this);
-    mainMenuPage_ = new MainMenuPage(this);
-    editProfilePage_ = new EditProfilePage(this);
-    gameMenuPage_ = new GameMenuPage(this);
-    lobbyPage_ = new LobbyPage(this);
-    loginPage_ = new LoginPage(this);
-    qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
-    loginPresenter_ = qtLoginPresenter_;
     // userRepo_ = new  ; concrete class implemented later
     // hasher_ = new ; concrete class implemented later;
     // session_ = new ; concrete class implemented later;
+    signUpPage_ = new SignUpPage(this);
+    resetPasswordPage_ = new ResetPasswordPage(this);
+    mainMenuPage_ = new MainMenuPage(this);
+
+    editProfilePage_ = new EditProfilePage(this);
+    qtEditProfilePresenter_ = new QtEditProfilePresenter(editProfilePage_);
+    editProfilePresenter_ = qtEditProfilePresenter_;
+    loadEditProfileUseCase_ = new LoadEditProfileUseCase(userRepo_, editProfilePresenter_, session_);
+    mainMenuPage_->setLoadEditProfileUseCase(loadEditProfileUseCase_);
+    editProfileUseCase_ = new EditProfileUseCase(userRepo_, editProfilePresenter_, session_, hasher_);
+
+    gameMenuPage_ = new GameMenuPage(this);
+    lobbyPage_ = new LobbyPage(this);
+
+    loginPage_ = new LoginPage(this);
+    qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
+    loginPresenter_ = qtLoginPresenter_;
     loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
     loginPage_->setLoginUseCase(loginUseCase_);
+
+
 
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);
@@ -86,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showMainMenuPage);
 
-    connect(editProfilePage_,
-            &EditProfilePage::saveChangesRequested,
+    connect(qtEditProfilePresenter_,
+            &QtEditProfilePresenter::saveChangesRequested,
             this,
             &MainWindow::showMainMenuPage);
 
@@ -141,6 +149,7 @@ void MainWindow::showMainMenuPage(){
 
 void MainWindow::showEditProfilePage(){
     ui->stackedWidget->setCurrentWidget(editProfilePage_);
+
 }
 
 void MainWindow::showGameMenuPage(){
