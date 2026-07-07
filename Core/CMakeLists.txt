@@ -7,7 +7,8 @@ add_library(Core STATIC
     Application/UseCases/EditProfile/editprofileusecase.h Application/UseCases/EditProfile/editprofileusecase.cpp
     Application/UseCases/EditProfile/loadeditprofileusecase.h Application/UseCases/EditProfile/loadeditprofileusecase.cpp
     Application/DTO/Auth/EditProfileRequest.h
-)
+    Application/UseCases/SignUp/SignUpUseCase.h  Application/UseCases/SignUp/SignUpUseCase.cpp
+    Domain/Interfaces/Services/ISignupPresenter.h )
 
 target_sources(Core PRIVATE
 
