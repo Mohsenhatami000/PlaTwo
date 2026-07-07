@@ -2,7 +2,6 @@
 #include "Presentation/MainWindow/ui_mainwindow.h"
 #include "../Login/QtLoginpresenter.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -24,6 +23,11 @@ MainWindow::MainWindow(QWidget *parent)
     // session_ = new ; concrete class implemented later;
     loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
     loginPage_->setLoginUseCase(loginUseCase_);
+
+    qtSignupPresenter_ = new QtSignupPresenter(signUpPage_);
+    signupPresenter_ = qtSignupPresenter_;
+    signupUseCase_ = new SignupUseCase(userRepo_, hasher_, signupPresenter_);
+    signUpPage_->setSignupUsecase(signupUseCase_);
 
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);

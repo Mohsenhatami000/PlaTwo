@@ -15,7 +15,9 @@
 #include "Application/UseCases/Login/loginusecase.h"
 #include "Domain/Interfaces/Services/IHasher.h"
 #include "Domain/Interfaces/Services/isessioncontext.h"
-
+#include "../SignUp/QTSignupPresenter.h"
+#include "Application/UseCases/SignUp/SignUpUseCase.h"
+#include "Domain/Interfaces/Services/ISignupPresenter.h"
 
 namespace Ui {
 class MainWindow;
@@ -64,6 +66,12 @@ private:
     QtLoginPresenter *qtLoginPresenter_;
 
     LoginUseCase *loginUseCase_;
+     
+    ISignupPresenter *signupPresenter_;
+
+    QtSignupPresenter *qtSignupPresenter_;
+
+    SignupUseCase*signupUseCase_;
 
     IHasher *hasher_;
 

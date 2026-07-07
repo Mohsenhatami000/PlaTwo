@@ -2,7 +2,9 @@ add_library(Core STATIC
     Domain/Entities/authenticateduser.h Domain/Entities/authenticateduser.cpp
     Domain/Interfaces/Services/isessioncontext.h Domain/Interfaces/Services/isessioncontext.cpp
     Application/UseCases/Login/loginusecase.h Application/UseCases/Login/loginusecase.cpp
-    Domain/Interfaces/Services/iloginpresenter.h Domain/Interfaces/Services/iloginpresenter.cpp)
+    Domain/Interfaces/Services/iloginpresenter.h Domain/Interfaces/Services/iloginpresenter.cpp
+    Application/UseCases/SignUp/SignUpUseCase.h  Application/UseCases/SignUp/SignUpUseCase.cpp
+    Domain/Interfaces/Services/ISignupPresenter.h )
 
 target_sources(Core PRIVATE
 
