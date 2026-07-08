@@ -18,6 +18,9 @@
 #include "../SignUp/QTSignupPresenter.h"
 #include "Application/UseCases/SignUp/SignUpUseCase.h"
 #include "Domain/Interfaces/Services/ISignupPresenter.h"
+#include "../ResetPassword/QTResetPasswordPresenter.h"
+#include "Application/UseCases/ResetPassword/ResetPasswordUsecase.h"
+#include "Argon2ID.h"
 
 namespace Ui {
 class MainWindow;
@@ -71,7 +74,13 @@ private:
 
     QtSignupPresenter *qtSignupPresenter_;
 
-    SignupUseCase*signupUseCase_;
+    SignupUseCase *signupUseCase_;
+
+    IResetPasswordPresenter *resetpasswordPresenter_;
+
+    QTResetPasswordPresenter* qtResetpasswordPresenter_;
+
+    ResetPasswordUsecase* resetpasswordUsecase_;
 
     IHasher *hasher_;
 

@@ -1,5 +1,5 @@
 add_library(Infrastructure STATIC
-    sessioncontext.h sessioncontext.cpp)
+    sessioncontext.h sessioncontext.cpp Argon2ID.h Argon2ID.cpp)
 
 target_link_libraries(Infrastructure
     PUBLIC

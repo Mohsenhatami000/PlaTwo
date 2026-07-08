@@ -10,6 +10,8 @@ qt_add_executable(ClientApp
     Presentation/Lobby/lobbypage.h Presentation/Lobby/lobbypage.cpp Presentation/Lobby/lobbypage.ui
     Presentation/Login/QtLoginpresenter.h Presentation/Login/QtLoginpresenter.cpp
     Presentation/SignUp/QTSignupPresenter.h     Presentation/SignUp/QTSignupPresenter.cpp 
+    Presentation/ResetPassword/QTResetPasswordPresenter.h     Presentation/ResetPassword/QTResetPasswordPresenter.cpp
+
 )
 
 target_link_libraries(ClientApp

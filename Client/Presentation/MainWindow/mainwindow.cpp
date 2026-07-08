@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
     loginPresenter_ = qtLoginPresenter_;
     // userRepo_ = new  ; concrete class implemented later
-    // hasher_ = new ; concrete class implemented later;
+    hasher_ = new Argon2ID();
     // session_ = new ; concrete class implemented later;
     loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
     loginPage_->setLoginUseCase(loginUseCase_);
@@ -28,6 +28,11 @@ MainWindow::MainWindow(QWidget *parent)
     signupPresenter_ = qtSignupPresenter_;
     signupUseCase_ = new SignupUseCase(userRepo_, hasher_, signupPresenter_);
     signUpPage_->setSignupUsecase(signupUseCase_);
+
+    qtResetpasswordPresenter_ = new QTResetPasswordPresenter(resetPasswordPage_);
+    resetpasswordPresenter_ = qtResetpasswordPresenter_;
+    resetpasswordUsecase_ = new ResetPasswordUsecase(userRepo_, hasher_, resetpasswordPresenter_);
+    resetPasswordPage_->setResetpasswordUsecase(resetpasswordUsecase_);
 
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);

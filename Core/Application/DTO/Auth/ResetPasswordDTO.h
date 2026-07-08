@@ -6,8 +6,3 @@ struct ResetPasswordRequest
 	std::string newpass_;
 	std::string newpassconfirm_;
 };
-
-struct ResetPasswordResult
-{
-	bool success_;
-};
