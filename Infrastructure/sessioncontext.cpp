@@ -5,7 +5,7 @@ bool SessionContext::isAuthenticated() const noexcept{
     else return false;
 }
 
-const std::optional<AuthenticatedUser> SessionContext::currentUser() const noexcept{
+const std::optional<AuthenticatedUser> SessionContext::currentUser() noexcept{
     return currentUser_.value();
 }
 

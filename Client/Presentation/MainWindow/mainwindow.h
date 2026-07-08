@@ -15,6 +15,10 @@
 #include "Application/UseCases/Login/loginusecase.h"
 #include "Domain/Interfaces/Services/IHasher.h"
 #include "Domain/Interfaces/Services/isessioncontext.h"
+#include "Application/UseCases/EditProfile/loadeditprofileusecase.h"
+#include "Domain/Interfaces/Services/ieditprofilepresenter.h"
+#include "../EditProfile/qteditprofilepresenter.h"
+#include "Application/UseCases/EditProfile/editprofileusecase.h"
 #include "../SignUp/QTSignupPresenter.h"
 #include "Application/UseCases/SignUp/SignUpUseCase.h"
 #include "Domain/Interfaces/Services/ISignupPresenter.h"
@@ -56,7 +60,16 @@ private:
 
     MainMenuPage *mainMenuPage_;
 
+
     EditProfilePage *editProfilePage_;
+
+    LoadEditProfileUseCase *loadEditProfileUseCase_;
+
+    IEditProfilePresenter *editProfilePresenter_;
+
+    QtEditProfilePresenter *qtEditProfilePresenter_;
+
+    EditProfileUseCase *editProfileUseCase_;
 
     GameMenuPage *gameMenuPage_;
 
