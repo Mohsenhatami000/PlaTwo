@@ -24,7 +24,7 @@
 #include "Domain/Interfaces/Services/ISignupPresenter.h"
 #include "../ResetPassword/QTResetPasswordPresenter.h"
 #include "Application/UseCases/ResetPassword/ResetPasswordUsecase.h"
-#include "Argon2ID.h"
+#include "Encryption/Argon2ID.h"
 
 namespace Ui {
 class MainWindow;

@@ -16,18 +16,36 @@ void SignupUseCase::execute(const SignUpRequest& request) {
         PhoneNumber phonenumber(request.phoneNumber_);
 		Email email(request.email_);
 		Password password(request.password_);
-		userRepo_->findByUsername(request.username_);//catch part later
-		userRepo_->findByPhoneNumber(request.phoneNumber_);//catch part later
-		userRepo_->findByEmail(request.email_);//catch part later
 		PasswordHash hashed(hasher_->hash(request.password_));
-		User user = userRepo_->save(name, username, phonenumber, email, hashed);
+        auto user1 = userRepo_->findByUsername(request.username_);
+        if (user1.has_value()) {
+            presenter_->presentSignupFailure("User with this username already exists!");
+        }
+        auto user2 = userRepo_->findByPhoneNumber(request.phoneNumber_);
+        if (user2.has_value()) {
+            presenter_->presentSignupFailure("User with this phonenumber already exists!");
+        }
+        auto user3 = userRepo_->findByEmail(request.email_);
+        if (user3.has_value()) {
+            presenter_->presentSignupFailure("User with this email already exists!");
+        }
+        else {
+            User user = userRepo_->save(name, username, phonenumber, email, hashed);
+            presenter_->presentSignUpSuccess();
+        }
 	}
 	catch(const std::invalid_argument& e)
 	{
 		std::string str(e.what());
 		presenter_->presentValidationError(str);
 	}
-	catch (Exceptions& e) {
+    catch (const std::runtime_error& e)
+    {
+        std::string str(e.what());
+        presenter_->presentValidationError(str);
+    }
+	catch (Exceptions& e) 
+    {
         switch (e.error()) {
         case DomainError::NameEmpty:
             presenter_->presentValidationError("Name is empty!");

@@ -27,6 +27,11 @@ void ResetPasswordUsecase::execute(const ResetPasswordRequest& request) {
 		std::string str(e.what());
 		presenter_->presentValidationError(str);
 	}
+    catch(const std::runtime_error& e)
+    {
+        std::string str(e.what());
+        presenter_->presentValidationError(str);
+    }
     catch (Exceptions& e) 
     {
         switch (e.error()) {
