@@ -18,7 +18,7 @@ void ResetPasswordUsecase::execute(const ResetPasswordRequest& request) {
             presenter_->presentResetPasswordFailure("User does not exist!");
         }
         else {
-            userRepo_->updatePassword(phonenumber, hash);
+            userRepo_->updatePassword(phonenumber.phoneNumerValue(), hash.passswordHashValue());
             presenter_->presentResetPasswordSuccess();
         }
 	}

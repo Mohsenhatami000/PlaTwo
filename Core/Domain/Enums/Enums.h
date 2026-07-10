@@ -1,6 +1,11 @@
 #pragma once
 enum class DomainError
 {
+    //User Repository
+
+    EmailNotUnique,
+    UsernameNotUnique,
+    PhoneNumberNotUnique,
 	//Email
 	EmailEmpty,
 	EmailInvalidFormat,

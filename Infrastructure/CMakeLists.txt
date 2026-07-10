@@ -7,13 +7,19 @@ add_library(Infrastructure STATIC
     Encryption/src/encoding.c
     Encryption/src/ref.c
     Encryption/src/blake2/blake2b.c
+    Repository/sqliteuserrepository.h Repository/sqliteuserrepository.cpp
+    DataBase/databasemanager.h DataBase/databasemanager.cpp
 )
 
 target_link_libraries(Infrastructure
     PUBLIC
         Core
+        Qt6::Core
+        Qt6::Widgets
+        Qt6::Sql
     PRIVATE
         bcrypt
+
 )
 
 target_include_directories(Infrastructure

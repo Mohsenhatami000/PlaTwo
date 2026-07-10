@@ -67,12 +67,31 @@ void EditProfileUseCase::execute(EditProfileRequest &request){
     }
     User user = userRepo_->findByID(session_->currentUser().value().id()).value();
     if(request.confirmPassword_.empty() && request.currentPassword_.empty() && request.newPassword_.empty()){
-        userRepo_->update(User(user.uID(),
-                               Name(request.name_),
-                               UserName(request.username_),
-                               PhoneNumber(request.phoneNumber_),
-                               Email(request.email_),
-                               user.uPasswordHash()));
+        try{
+        userRepo_->update(user.uID()
+                          ,request.name_
+                          ,request.username_
+                          ,request.phoneNumber_
+                          ,request.email_
+                          ,user.uPasswordHash().passswordHashValue());
+        }
+        catch(Exceptions &e){
+            switch(e.error()){
+            case DomainError::UsernameNotUnique:
+                editProfilePresenter_->presentValidationError("Username must be unique!");
+                break;
+            case DomainError::EmailNotUnique:
+                editProfilePresenter_->presentValidationError("Email must be unique!");
+                break;
+            case DomainError::PhoneNumberNotUnique:
+                editProfilePresenter_->presentValidationError("PhoneNumber must be unique!");
+                break;
+            default:
+                editProfilePresenter_->presentValidationError("Unknown error!");
+                break;
+            }
+            return;
+        }
 
         session_->login(AuthenticatedUser(user.uID(), Name(request.name_), UserName(request.username_)));
         editProfilePresenter_->presentEditSuccess();
@@ -114,12 +133,33 @@ void EditProfileUseCase::execute(EditProfileRequest &request){
                 }
                 return;
             }
-            userRepo_->update(User(user.uID(),
-                                   Name(request.name_),
-                                   UserName(request.username_),
-                                   PhoneNumber(request.phoneNumber_),
-                                   Email(request.email_),
-                                   PasswordHash(request.newPassword_)));
+            try{
+            userRepo_->update(user.uID()
+                              ,request.name_
+                              ,request.username_
+                              ,request.phoneNumber_
+                              ,request.email_
+                              ,hasher_->hash(request.newPassword_));
+            }
+
+            catch(Exceptions &e){
+                switch(e.error()){
+                case DomainError::UsernameNotUnique:
+                    editProfilePresenter_->presentValidationError("Username must be unique!");
+                    break;
+                case DomainError::EmailNotUnique:
+                    editProfilePresenter_->presentValidationError("Email must be unique!");
+                    break;
+                case DomainError::PhoneNumberNotUnique:
+                    editProfilePresenter_->presentValidationError("PhoneNumber must be unique!");
+                    break;
+                default:
+                    editProfilePresenter_->presentValidationError("Unknown error!");
+                    break;
+                }
+                return;
+            }
+
             session_->login(AuthenticatedUser(user.uID(), Name(request.name_), UserName(request.username_)));
             editProfilePresenter_->presentEditSuccess();
         }

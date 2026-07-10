@@ -19,6 +19,8 @@ target_link_libraries(ClientApp
     PRIVATE
         Qt6::Widgets
         Qt6::Network
+        Qt6::Core
+        Qt6::Sql
         Core
         Infrastructure
 )

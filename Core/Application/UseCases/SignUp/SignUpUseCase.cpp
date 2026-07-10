@@ -17,22 +17,6 @@ void SignupUseCase::execute(const SignUpRequest& request) {
 		Email email(request.email_);
 		Password password(request.password_);
 		PasswordHash hashed(hasher_->hash(request.password_));
-        auto user1 = userRepo_->findByUsername(request.username_);
-        if (user1.has_value()) {
-            presenter_->presentSignupFailure("User with this username already exists!");
-        }
-        auto user2 = userRepo_->findByPhoneNumber(request.phoneNumber_);
-        if (user2.has_value()) {
-            presenter_->presentSignupFailure("User with this phonenumber already exists!");
-        }
-        auto user3 = userRepo_->findByEmail(request.email_);
-        if (user3.has_value()) {
-            presenter_->presentSignupFailure("User with this email already exists!");
-        }
-        else {
-            User user = userRepo_->save(name, username, phonenumber, email, hashed);
-            presenter_->presentSignUpSuccess();
-        }
 	}
 	catch(const std::invalid_argument& e)
 	{
@@ -107,4 +91,26 @@ void SignupUseCase::execute(const SignUpRequest& request) {
         }
         return;
 	}
+    try{
+    userRepo_->save(request.name_, request.username_, request.phoneNumber_, request.email_, hasher_->hash(request.password_));
+    }
+
+    catch(Exceptions &e){
+        switch(e.error()){
+        case DomainError::UsernameNotUnique:
+            presenter_->presentValidationError("Username must be unique!");
+            break;
+        case DomainError::EmailNotUnique:
+            presenter_->presentValidationError("Email must be unique!");
+            break;
+        case DomainError::PhoneNumberNotUnique:
+            presenter_->presentValidationError("PhoneNumber must be unique!");
+            break;
+        default:
+            presenter_->presentValidationError("Unknown error!");
+            break;
+        }
+        return;
+    }
+
 }

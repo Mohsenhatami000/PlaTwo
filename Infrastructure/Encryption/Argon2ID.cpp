@@ -1,7 +1,7 @@
 #include "Argon2ID.h"
 #include <Domain/ValueObjects/PasswordHash.h>
 std::array<uint8_t, 16> Argon2ID::generateSalt(){
-    std::array<std::uint8_t,16> salt;
+    std::array<uint8_t,16> salt;
     const NTSTATUS res = BCryptGenRandom(nullptr, reinterpret_cast<PUCHAR>(salt.data()), static_cast<ULONG>(salt.size()),
             BCRYPT_USE_SYSTEM_PREFERRED_RNG );
     if (!BCRYPT_SUCCESS(res)){
