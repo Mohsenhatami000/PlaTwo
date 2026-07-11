@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "Presentation/MainWindow/ui_mainwindow.h"
 #include "../Login/QtLoginpresenter.h"
+#include "Encryption/Argon2ID.h"
+#include "Repository/sqliteuserrepository.h"
+#include "sessioncontext.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,28 +11,34 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // userRepo_ = new  ; concrete class implemented later
+    db_ = new DatabaseManager;
+    db_->initialize();
+    userRepo_ = new SQLiteUserRepository(db_->database());
+
     hasher_ = new Argon2ID();
-    // session_ = new ; concrete class implemented later;
+    session_ = new SessionContext;
     signUpPage_ = new SignUpPage(this);
     resetPasswordPage_ = new ResetPasswordPage(this);
+    loginPage_ = new LoginPage(this);
     mainMenuPage_ = new MainMenuPage(this);
-
     editProfilePage_ = new EditProfilePage(this);
+
+
+    qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
+    loginPresenter_ = qtLoginPresenter_;
+    loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
+    loginPage_->setLoginUseCase(loginUseCase_);
+
+
     qtEditProfilePresenter_ = new QtEditProfilePresenter(editProfilePage_);
     editProfilePresenter_ = qtEditProfilePresenter_;
     loadEditProfileUseCase_ = new LoadEditProfileUseCase(userRepo_, editProfilePresenter_, session_);
     mainMenuPage_->setLoadEditProfileUseCase(loadEditProfileUseCase_);
     editProfileUseCase_ = new EditProfileUseCase(userRepo_, editProfilePresenter_, session_, hasher_);
+    editProfilePage_->setEditProfileUseCase(editProfileUseCase_);
 
     gameMenuPage_ = new GameMenuPage(this);
     lobbyPage_ = new LobbyPage(this);
-
-    loginPage_ = new LoginPage(this);
-    qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
-    loginPresenter_ = qtLoginPresenter_;
-    loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
-    loginPage_->setLoginUseCase(loginUseCase_);
 
     qtSignupPresenter_ = new QtSignupPresenter(signUpPage_);
     signupPresenter_ = qtSignupPresenter_;
@@ -62,10 +71,10 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showLoginPage);
 
-    connect(signUpPage_,
-            &SignUpPage::signUpRequested,
+    connect(qtSignupPresenter_,
+            &QtSignupPresenter::SignUpSucceed,
             this,
-            &MainWindow::showLoginPage); // Must be edited later
+            &MainWindow::showLoginPage);
 
     connect(loginPage_,
             &LoginPage::resetPasswordRequested,
@@ -77,10 +86,10 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showLoginPage);
 
-    connect(resetPasswordPage_,
-            &ResetPasswordPage::resetPasswordRequested,
+    connect(qtResetpasswordPresenter_,
+            &QTResetPasswordPresenter::ResetpasswordSucceed,
             this,
-            &MainWindow::showLoginPage); // Must be edited later
+            &MainWindow::showLoginPage);
 
     connect(qtLoginPresenter_,
             &QtLoginPresenter::LoginSucceed,
@@ -171,4 +180,5 @@ void MainWindow::showLobbyPage(){
 MainWindow::~MainWindow()
 {
     delete ui;
+    db_->database().close();
 }

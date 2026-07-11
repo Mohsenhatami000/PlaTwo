@@ -13,7 +13,6 @@ public:
     virtual std::optional<User> findByID(std::int64_t id) const = 0;
     virtual std::optional<User> findByUsername(std::string username) const = 0;
     virtual std::optional<User> findByPhoneNumber(std::string number) const = 0;
-    virtual std::optional<User> findByEmail(std::string email) const = 0;
     virtual void updatePassword(const std::string& number, const std::string& newPassword) = 0;
 
 };

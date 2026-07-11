@@ -20,7 +20,6 @@ public:
 
 signals:
     void backToLoginRequested();
-    void signUpRequested();
 
 private slots:
     void on_pushButton_back_clicked();

@@ -7,7 +7,7 @@ Email::Email(const std::string& value) {
 	if (value.empty()) {
 		throw Exceptions(DomainError::EmailEmpty);
 	}
-	static const std::regex gmailPattern(R"(^(?=[a-zA-Z0-9.]{6,30}@gmail\.com$)(?!.*\.\..*@)(?!^\.)(?!.*\.@)[a-zA-Z0-9.]+@gmail\.com$)");
+    static const std::regex gmailPattern(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
 	if (!std::regex_match(value, gmailPattern)) {
 		throw Exceptions(DomainError::EmailInvalidFormat);
 	}

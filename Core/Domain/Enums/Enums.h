@@ -1,8 +1,8 @@
 #pragma once
 enum class DomainError
 {
+    UnknownError,
     //User Repository
-
     EmailNotUnique,
     UsernameNotUnique,
     PhoneNumberNotUnique,

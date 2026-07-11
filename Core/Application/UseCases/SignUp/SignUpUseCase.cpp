@@ -1,6 +1,9 @@
 #include <stdexcept>
 #include "SignUpUseCase.h"
 #include "Domain/ValueObjects/Password.h"
+#include "Domain/Enums/Enums.h"
+#include "Domain/Exceptions/Exceptions.h"
+
 SignupUseCase::SignupUseCase(IUserRepository *repo, IHasher *hasher, ISignupPresenter *pre):userRepo_(repo),
                presenter_(pre),hasher_(hasher) {
 
@@ -22,11 +25,13 @@ void SignupUseCase::execute(const SignUpRequest& request) {
 	{
 		std::string str(e.what());
 		presenter_->presentValidationError(str);
+        return;
 	}
     catch (const std::runtime_error& e)
     {
         std::string str(e.what());
         presenter_->presentValidationError(str);
+        return;
     }
 	catch (Exceptions& e) 
     {
@@ -92,7 +97,7 @@ void SignupUseCase::execute(const SignUpRequest& request) {
         return;
 	}
     try{
-    userRepo_->save(request.name_, request.username_, request.phoneNumber_, request.email_, hasher_->hash(request.password_));
+        userRepo_->save(request.name_, request.username_, request.phoneNumber_, request.email_, hasher_->hash(request.password_));
     }
 
     catch(Exceptions &e){
@@ -112,5 +117,6 @@ void SignupUseCase::execute(const SignUpRequest& request) {
         }
         return;
     }
+    presenter_->presentSignUpSuccess();
 
 }

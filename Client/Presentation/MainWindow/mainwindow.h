@@ -24,7 +24,7 @@
 #include "Domain/Interfaces/Services/ISignupPresenter.h"
 #include "../ResetPassword/QTResetPasswordPresenter.h"
 #include "Application/UseCases/ResetPassword/ResetPasswordUsecase.h"
-#include "Encryption/Argon2ID.h"
+#include "DataBase/databasemanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -60,7 +60,6 @@ private:
 
     MainMenuPage *mainMenuPage_;
 
-
     EditProfilePage *editProfilePage_;
 
     LoadEditProfileUseCase *loadEditProfileUseCase_;
@@ -76,6 +75,8 @@ private:
     LobbyPage *lobbyPage_;
 
     IUserRepository *userRepo_;
+
+    DatabaseManager *db_;
 
     ILoginPresenter *loginPresenter_;
 
