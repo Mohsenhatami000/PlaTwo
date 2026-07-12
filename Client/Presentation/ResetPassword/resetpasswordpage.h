@@ -2,6 +2,8 @@
 #define RESETPASSWORDPAGE_H
 
 #include <QWidget>
+#include "Application/UseCases/ResetPassword/ResetPasswordUsecase.h"
+#include "Application/DTO/Auth/ResetPasswordDTO.h"
 
 namespace Ui {
 class ResetPasswordPage;
@@ -10,10 +12,11 @@ class ResetPasswordPage;
 class ResetPasswordPage : public QWidget
 {
     Q_OBJECT
-
+    ResetPasswordUsecase* resetpasswordUseCase_;
 public:
     explicit ResetPasswordPage(QWidget *parent = nullptr);
     ~ResetPasswordPage();
+    void setResetpasswordUsecase(ResetPasswordUsecase* usecase);
 
 signals:
     void backToLoginRequested();

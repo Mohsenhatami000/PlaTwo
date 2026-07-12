@@ -8,7 +8,10 @@ qt_add_executable(ClientApp
     Presentation/EditProfile/editprofilepage.h Presentation/EditProfile/editprofilepage.cpp Presentation/EditProfile/editprofilepage.ui
     Presentation/GameMenu/gamemenupage.h Presentation/GameMenu/gamemenupage.cpp Presentation/GameMenu/gamemenupage.ui
     Presentation/Lobby/lobbypage.h Presentation/Lobby/lobbypage.cpp Presentation/Lobby/lobbypage.ui
-
+    Presentation/Login/QtLoginpresenter.h Presentation/Login/QtLoginpresenter.cpp
+    Presentation/EditProfile/qteditprofilepresenter.h Presentation/EditProfile/qteditprofilepresenter.cpp
+    Presentation/SignUp/QTSignupPresenter.h     Presentation/SignUp/QTSignupPresenter.cpp 
+    Presentation/ResetPassword/QTResetPasswordPresenter.h     Presentation/ResetPassword/QTResetPasswordPresenter.cpp
 
 )
 
@@ -16,5 +19,8 @@ target_link_libraries(ClientApp
     PRIVATE
         Qt6::Widgets
         Qt6::Network
+        Qt6::Core
+        Qt6::Sql
         Core
+        Infrastructure
 )

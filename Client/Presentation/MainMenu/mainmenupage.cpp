@@ -22,6 +22,7 @@ void MainMenuPage::on_pushButton_quit_clicked()
 void MainMenuPage::on_pushButton_edit_profile_clicked()
 {
     emit editProfileRequested();
+    loadEditProfileUseCase_->execute();
 }
 
 
@@ -42,3 +43,6 @@ void MainMenuPage::on_pushButton_fanorona_clicked()
     emit fanoronaRequested();
 }
 
+void MainMenuPage::setLoadEditProfileUseCase(LoadEditProfileUseCase *loadEditProfileUseCase){
+    loadEditProfileUseCase_ = loadEditProfileUseCase;
+}

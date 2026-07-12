@@ -1,6 +1,6 @@
 #include "Exceptions.h"
-Exceptions::Exceptions(DomainError error):error_(error){
-
+Exceptions::Exceptions(DomainError error){
+    error_ = error;
 }
 DomainError Exceptions::error() const noexcept{
 	return error_;

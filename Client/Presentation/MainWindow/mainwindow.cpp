@@ -1,6 +1,9 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-
+#include "Presentation/MainWindow/ui_mainwindow.h"
+#include "../Login/QtLoginpresenter.h"
+#include "Encryption/Argon2ID.h"
+#include "Repository/sqliteuserrepository.h"
+#include "sessioncontext.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,14 +11,44 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    loginPage_ = new LoginPage(this);
+    db_ = new DatabaseManager;
+    db_->initialize();
+    userRepo_ = new SQLiteUserRepository(db_->database());
+
+    hasher_ = new Argon2ID();
+    session_ = new SessionContext;
     signUpPage_ = new SignUpPage(this);
     resetPasswordPage_ = new ResetPasswordPage(this);
+    loginPage_ = new LoginPage(this);
     mainMenuPage_ = new MainMenuPage(this);
     editProfilePage_ = new EditProfilePage(this);
+
+
+    qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
+    loginPresenter_ = qtLoginPresenter_;
+    loginUseCase_ = new LoginUseCase(userRepo_, loginPresenter_, hasher_, session_);
+    loginPage_->setLoginUseCase(loginUseCase_);
+
+
+    qtEditProfilePresenter_ = new QtEditProfilePresenter(editProfilePage_);
+    editProfilePresenter_ = qtEditProfilePresenter_;
+    loadEditProfileUseCase_ = new LoadEditProfileUseCase(userRepo_, editProfilePresenter_, session_);
+    mainMenuPage_->setLoadEditProfileUseCase(loadEditProfileUseCase_);
+    editProfileUseCase_ = new EditProfileUseCase(userRepo_, editProfilePresenter_, session_, hasher_);
+    editProfilePage_->setEditProfileUseCase(editProfileUseCase_);
+
     gameMenuPage_ = new GameMenuPage(this);
     lobbyPage_ = new LobbyPage(this);
 
+    qtSignupPresenter_ = new QtSignupPresenter(signUpPage_);
+    signupPresenter_ = qtSignupPresenter_;
+    signupUseCase_ = new SignupUseCase(userRepo_, hasher_, signupPresenter_);
+    signUpPage_->setSignupUsecase(signupUseCase_);
+
+    qtResetpasswordPresenter_ = new QTResetPasswordPresenter(resetPasswordPage_);
+    resetpasswordPresenter_ = qtResetpasswordPresenter_;
+    resetpasswordUsecase_ = new ResetPasswordUsecase(userRepo_, hasher_, resetpasswordPresenter_);
+    resetPasswordPage_->setResetpasswordUsecase(resetpasswordUsecase_);
 
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);
@@ -38,10 +71,10 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showLoginPage);
 
-    connect(signUpPage_,
-            &SignUpPage::signUpRequested,
+    connect(qtSignupPresenter_,
+            &QtSignupPresenter::SignUpSucceed,
             this,
-            &MainWindow::showLoginPage); // Must be edited later
+            &MainWindow::showLoginPage);
 
     connect(loginPage_,
             &LoginPage::resetPasswordRequested,
@@ -53,13 +86,13 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showLoginPage);
 
-    connect(resetPasswordPage_,
-            &ResetPasswordPage::resetPasswordRequested,
+    connect(qtResetpasswordPresenter_,
+            &QTResetPasswordPresenter::ResetpasswordSucceed,
             this,
-            &MainWindow::showLoginPage); // Must be edited later
+            &MainWindow::showLoginPage);
 
-    connect(loginPage_,
-            &LoginPage::mainMenuRequested,
+    connect(qtLoginPresenter_,
+            &QtLoginPresenter::LoginSucceed,
             this,
             &MainWindow::showMainMenuPage);
 
@@ -78,8 +111,8 @@ MainWindow::MainWindow(QWidget *parent)
             this,
             &MainWindow::showMainMenuPage);
 
-    connect(editProfilePage_,
-            &EditProfilePage::saveChangesRequested,
+    connect(qtEditProfilePresenter_,
+            &QtEditProfilePresenter::saveChangesRequested,
             this,
             &MainWindow::showMainMenuPage);
 
@@ -133,6 +166,7 @@ void MainWindow::showMainMenuPage(){
 
 void MainWindow::showEditProfilePage(){
     ui->stackedWidget->setCurrentWidget(editProfilePage_);
+
 }
 
 void MainWindow::showGameMenuPage(){
@@ -146,4 +180,5 @@ void MainWindow::showLobbyPage(){
 MainWindow::~MainWindow()
 {
     delete ui;
+    db_->database().close();
 }
