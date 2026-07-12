@@ -74,5 +74,6 @@ void ResetPasswordUsecase::execute(const ResetPasswordRequest& request) {
         }
         return;
     }
+    presenter_->presentResetPasswordSuccess();
 }
 
