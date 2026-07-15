@@ -10,7 +10,8 @@ add_library(Core STATIC
     Application/UseCases/SignUp/SignUpUseCase.h  Application/UseCases/SignUp/SignUpUseCase.cpp
     Domain/Interfaces/Services/ISignupPresenter.h  
     Application/UseCases/ResetPassword/ResetPasswordUseCase.h  Application/UseCases/ResetPassword/ResetPasswordUseCase.cpp
-    Domain/Interfaces/Services/IResetPasswordpresenter.h  
+    Domain/Interfaces/Services/IResetPasswordpresenter.h
+    Domain/Interfaces/Services/inetworkclient.h Domain/Interfaces/Services/inetworkclient.cpp
 )
 
 target_sources(Core PRIVATE

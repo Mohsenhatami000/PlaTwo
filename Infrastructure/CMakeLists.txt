@@ -10,7 +10,6 @@ add_library(Infrastructure STATIC
     Repository/sqliteuserrepository.h Repository/sqliteuserrepository.cpp
     DataBase/databasemanager.h DataBase/databasemanager.cpp
     Network/Server/qtcpnetworkserver.h Network/Server/qtcpnetworkserver.cpp
-
     Network/Client/qtcpnetworkclient.h Network/Client/qtcpnetworkclient.cpp
 )
 
