@@ -75,8 +75,8 @@ target_sources(Core PRIVATE
     Domain/Interfaces/Services/IHasher.cpp
     Domain/Interfaces/Services/IHasher.h
 
-    Domain/Interfaces/Services/INetworkGateway.cpp
-    Domain/Interfaces/Services/INetworkGateway.h
+    Domain/Interfaces/Services/INetworkServer.cpp
+    Domain/Interfaces/Services/INetworkServer.h
 
     Domain/Interfaces/Services/ISerializer.cpp
     Domain/Interfaces/Services/ISerializer.h
