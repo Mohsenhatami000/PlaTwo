@@ -13,7 +13,7 @@ class QTcpNetworkClient : public QObject, public INetworkClient
 
 public:
 
-    QTcpNetworkClient(QObject *parent);
+    QTcpNetworkClient(QObject *parent = nullptr);
     virtual void Connect(std::string IP,std::int64_t port) override;
     virtual void Disconnect() override;
 

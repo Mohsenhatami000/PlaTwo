@@ -1,7 +1,7 @@
 #include "qtcpnetworkserver.h"
 #include <QHostAddress>
 
-QTcpNetworkServer::QTcpNetworkServer(QObject *parent){
+QTcpNetworkServer::QTcpNetworkServer(QObject *parent): QObject(parent){
 
     server_ = new QTcpServer(this);
     ClientCounter_ = 0;
@@ -11,8 +11,6 @@ QTcpNetworkServer::QTcpNetworkServer(QObject *parent){
             &QTcpServer::newConnection,
             this,
             &QTcpNetworkServer::onNewConnection);
-
-
 }
 
 
@@ -24,11 +22,20 @@ QTcpNetworkServer::~QTcpNetworkServer(){
 }
 
 
-void QTcpNetworkServer::start(){
+bool QTcpNetworkServer::start(){
 
     QHostAddress localIP;
     localIP.setAddress("127.0.0.1");
-    server_->listen(localIP, 5000);
+    quint16 port = 5000;
+    if(!server_->listen(localIP, port)){
+        qDebug() << "Server failed to start" << Qt::endl;
+        return false;
+    }
+    else{
+
+        qDebug() << "Server is now listening on IP:" << localIP.toString() << "| Port:" << port << Qt::endl;
+        return true;
+    }
 }
 
 
@@ -49,7 +56,6 @@ void QTcpNetworkServer::onNewConnection(){
             });
 }
 
-
 void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
 
     QByteArray buffer = socket->readAll();
@@ -64,4 +70,19 @@ void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
 void QTcpNetworkServer::stop() noexcept{
     server_->close();
 }
+
+void QTcpNetworkServer::send() noexcept{
+    return;
+}
+
+void QTcpNetworkServer::broadcast() noexcept{
+    return;
+}
+
+void QTcpNetworkServer::disconnect() noexcept{
+    return;
+}
+
+
+
 

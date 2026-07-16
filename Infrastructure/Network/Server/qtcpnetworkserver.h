@@ -18,11 +18,11 @@ public:
 
     QTcpNetworkServer(QObject *parent = nullptr);
     ~QTcpNetworkServer();
-    void start() override;
+    bool start() override;
     void stop() noexcept override;
-    void send() const noexcept;
-    void broadcast() const noexcept;
-    void disconnect() const noexcept;
+    void send() noexcept override;
+    void broadcast() noexcept override;
+    void disconnect() noexcept override;
 
 private slots:
     void onNewConnection();

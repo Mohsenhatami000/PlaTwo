@@ -55,5 +55,9 @@ void QTcpNetworkClient::onReadyRead(QTcpSocket *socket){
 
 }
 
+void QTcpNetworkClient::Disconnect(){
+    return;
+}
+
 
 
