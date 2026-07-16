@@ -2,17 +2,17 @@
 #define QTCPNETWORKSERVER_H
 
 #include "Domain/Interfaces/Services/INetworkServer.h"
+#include "Session/sessionmanager.h"
 #include <QTcpServer>
 #include <QTcpSocket>
-#include <QHash>
+
 
 
 class QTcpNetworkServer : public QObject, public INetworkServer
 {
     Q_OBJECT;
     QTcpServer *server_;
-    int ClientCounter_;
-    QHash<int, QTcpSocket*> ClientList_;
+    SessionManager sessionManager_;
 
 public:
 

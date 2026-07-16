@@ -11,6 +11,8 @@ add_library(Infrastructure STATIC
     DataBase/databasemanager.h DataBase/databasemanager.cpp
     Network/Server/qtcpnetworkserver.h Network/Server/qtcpnetworkserver.cpp
     Network/Client/qtcpnetworkclient.h Network/Client/qtcpnetworkclient.cpp
+    Session/clientsession.h Session/clientsession.cpp
+    Session/sessionmanager.h Session/sessionmanager.cpp
 )
 
 target_link_libraries(Infrastructure

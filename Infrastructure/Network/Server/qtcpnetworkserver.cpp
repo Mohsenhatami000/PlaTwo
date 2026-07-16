@@ -4,8 +4,6 @@
 QTcpNetworkServer::QTcpNetworkServer(QObject *parent): QObject(parent){
 
     server_ = new QTcpServer(this);
-    ClientCounter_ = 0;
-
 
     connect(server_,
             &QTcpServer::newConnection,
@@ -42,11 +40,10 @@ bool QTcpNetworkServer::start(){
 void QTcpNetworkServer::onNewConnection(){
 
     QTcpSocket *newSocket = server_->nextPendingConnection();
-    ClientCounter_++;
 
-    qDebug() << "Client" << ClientCounter_ << " was connected to the server!" << Qt::endl;
+    sessionManager_.initSession(newSocket);
 
-    ClientList_.insert(ClientCounter_, newSocket);
+    qDebug() << "Client" << sessionManager_.getClientCounter() << " was connected to the server!" << Qt::endl;
 
     connect(newSocket,
             &QTcpSocket::readyRead,
