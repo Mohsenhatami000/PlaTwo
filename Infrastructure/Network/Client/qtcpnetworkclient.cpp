@@ -60,4 +60,12 @@ void QTcpNetworkClient::Disconnect(){
 }
 
 
+void QTcpNetworkClient::send(Packet &packet){
+    QByteArray buffer;
+    QDataStream out(&buffer, QIODevice::WriteOnly);
+    out << packet.type();
+    packet.serialize(out);
+    socket_->write(buffer);
+}
+
 

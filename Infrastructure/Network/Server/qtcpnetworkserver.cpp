@@ -1,5 +1,7 @@
 #include "qtcpnetworkserver.h"
 #include <QHostAddress>
+#include "Network/Packet/packet.h"
+#include "Network/Packet/authenticatepacket.h"
 
 QTcpNetworkServer::QTcpNetworkServer(QObject *parent): QObject(parent){
 
@@ -56,11 +58,26 @@ void QTcpNetworkServer::onNewConnection(){
 void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
 
     QByteArray buffer = socket->readAll();
+    QDataStream in(&buffer, QIODevice::ReadOnly);
+    Type type;
+    in >> type;
 
-    QDataStream out(&buffer, QIODevice::ReadOnly);
+    switch(type){
 
-    // read spected packets
+        case Type::Authenticate:
+        {
+            AuthenticatePacket tmp;
+            tmp.deserialize(in);
+            sessionManager_.addUserInformation(socket, tmp.id(), tmp.name(), tmp.username());
+            break;
+        }
+        case Type::CreateRoom:
 
+            break;
+
+        default:
+            break;
+    }
 }
 
 

@@ -4,8 +4,8 @@
 #include <QDataStream>
 
 enum class Type{
-
-
+    Authenticate,
+    CreateRoom,
 
 
 };

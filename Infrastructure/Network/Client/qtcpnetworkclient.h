@@ -14,8 +14,9 @@ class QTcpNetworkClient : public QObject, public INetworkClient
 public:
 
     QTcpNetworkClient(QObject *parent = nullptr);
-    virtual void Connect(std::string IP,std::int64_t port) override;
-    virtual void Disconnect() override;
+    void Connect(std::string IP,std::int64_t port) override;
+    void Disconnect() override;
+    void send(Packet &packet) override;
 
 private slots:
 
