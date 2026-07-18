@@ -6,6 +6,7 @@
 enum class Type{
     Authenticate,
     CreateRoom,
+    JoinRoom
 
 
 };

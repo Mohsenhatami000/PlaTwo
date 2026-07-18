@@ -16,6 +16,7 @@ add_library(Infrastructure STATIC
     Session/sessionmanager.h Session/sessionmanager.cpp
     Network/Packet/authenticatepacket.h Network/Packet/authenticatepacket.cpp
     Network/Packet/createroompacket.h Network/Packet/createroompacket.cpp
+    Network/Packet/joinroompacket.h Network/Packet/joinroompacket.cpp
 
 )
 
