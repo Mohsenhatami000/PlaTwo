@@ -14,10 +14,10 @@ class JoinRoomPacket : public Packet
 
 public:
 
-    JoinRoomPacket(Type type, std::string IP, std::int64_t port, std::int64_t roomId);
+    JoinRoomPacket(std::string IP, std::int64_t port, std::int64_t roomId);
     JoinRoomPacket();
-    void serialize(QDataStream &out) const;
-    void deserialize(QDataStream &in);
+    void serialize(QDataStream &out) const override;
+    void deserialize(QDataStream &in) override;
 
     std::string IP() const;
     std::int64_t port() const;

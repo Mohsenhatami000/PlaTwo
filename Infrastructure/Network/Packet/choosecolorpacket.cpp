@@ -2,7 +2,7 @@
 #include <QString>
 ChooseColorPacket::ChooseColorPacket(): Packet(Type::ChooseColor){};
 
-ChooseColorPacket::ChooseColorPacket(Type type, std::string color): Packet(type){
+ChooseColorPacket::ChooseColorPacket(std::string color): Packet(Type::ChooseColor){
     color_ = color;
 }
 

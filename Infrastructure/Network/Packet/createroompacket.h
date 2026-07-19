@@ -13,10 +13,10 @@ class CreateRoomPacket : public Packet
 
 
 public:
-    CreateRoomPacket(Type type, int width, int height, int timeLimit, GameType gameType);
+    CreateRoomPacket(int width, int height, int timeLimit, GameType gameType);
     CreateRoomPacket();
-    void serialize(QDataStream &out) const;
-    void deserialize(QDataStream &in);
+    void serialize(QDataStream &out) const override;
+    void deserialize(QDataStream &in) override;
 
     int width() const;
     int height() const;
