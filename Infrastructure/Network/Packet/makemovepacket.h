@@ -9,8 +9,8 @@ class MakeMovePacket : public Packet
 
 public:
     MakeMovePacket();
-    void serialize(QDataStream &out) const; //implement later
-    void deserialize(QDataStream &in); //implement later
+    void serialize(QDataStream &out) const override; //implement later
+    void deserialize(QDataStream &in) override; //implement later
 };
 
 #endif // MAKEMOVEPACKET_H

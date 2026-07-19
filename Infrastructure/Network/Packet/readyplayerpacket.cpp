@@ -2,7 +2,7 @@
 
 ReadyPlayerPacket::ReadyPlayerPacket(): Packet(Type::ReadyPlayer){}
 
-ReadyPlayerPacket::ReadyPlayerPacket(Type type, bool isReady): Packet(type){
+ReadyPlayerPacket::ReadyPlayerPacket(bool isReady): Packet(Type::ReadyPlayer){
     isReady_ = isReady;
 }
 

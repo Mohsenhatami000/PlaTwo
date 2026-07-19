@@ -9,10 +9,10 @@ class ReadyPlayerPacket : public Packet
 
 public:
 
-    ReadyPlayerPacket(Type type, bool isReady);
+    ReadyPlayerPacket(bool isReady);
     ReadyPlayerPacket();
-    void serialize(QDataStream &out) const;
-    void deserialize(QDataStream &in);
+    void serialize(QDataStream &out) const override;
+    void deserialize(QDataStream &in) override;
     bool isReady() const;
 
 };

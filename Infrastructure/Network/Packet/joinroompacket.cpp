@@ -1,7 +1,7 @@
 #include "joinroompacket.h"
 #include <QString>
 
-JoinRoomPacket::JoinRoomPacket(Type type, std::string IP, std::int64_t port, std::int64_t roomId): Packet(type){
+JoinRoomPacket::JoinRoomPacket(std::string IP, std::int64_t port, std::int64_t roomId): Packet(Type::JoinRoom){
     IP_ = IP;
     port_ = port;
     roomId_ = roomId;

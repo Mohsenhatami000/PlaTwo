@@ -8,10 +8,10 @@ class ChooseColorPacket : public Packet
     std::string color_;
 
 public:
-    ChooseColorPacket(Type type, std::string color);
+    ChooseColorPacket(std::string color);
     ChooseColorPacket();
-    void serialize(QDataStream &out) const;
-    void deserialize(QDataStream &in);
+    void serialize(QDataStream &out) const override;
+    void deserialize(QDataStream &in) override;
     std::string color() const;
 };
 

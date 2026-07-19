@@ -1,6 +1,6 @@
 #include "createroompacket.h"
 
-CreateRoomPacket::CreateRoomPacket(Type type, int width, int height, int timeLimit, GameType gameType): Packet(type){
+CreateRoomPacket::CreateRoomPacket(int width, int height, int timeLimit, GameType gameType): Packet(Type::CreateRoom){
     width_ = width;
     height_ = height;
     timeLimit_ = timeLimit;
