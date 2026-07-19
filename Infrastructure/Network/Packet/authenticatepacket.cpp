@@ -1,7 +1,7 @@
 #include "authenticatepacket.h"
 #include <QString>
 
-AuthenticatePacket::AuthenticatePacket(Type type, std::int64_t id, std::string name, std::string username): Packet(type){
+AuthenticatePacket::AuthenticatePacket(std::int64_t id, std::string name, std::string username): Packet(Type::Authenticate){
     id_ = id;
     name_ = name;
     username_ = username;

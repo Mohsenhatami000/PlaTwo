@@ -13,7 +13,7 @@ class AuthenticatePacket : public Packet
 
 public:
 
-    AuthenticatePacket(Type type, std::int64_t id, std::string name, std::string username);
+    AuthenticatePacket(std::int64_t id, std::string name, std::string username);
     AuthenticatePacket();
     void serialize(QDataStream &out) const override;
     void deserialize(QDataStream &in) override;

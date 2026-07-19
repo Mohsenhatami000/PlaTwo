@@ -6,9 +6,17 @@
 enum class Type{
     Authenticate,
     CreateRoom,
-    JoinRoom
-
-
+    JoinRoom,
+    ReadyPlayer,
+    LeaveRoom, // roomID in ClientSession
+    StartGame,
+    CancelRoom,
+    ChooseColor,
+    MakeMove, // later implemenation
+    Ressign,
+    StartNewMatch,
+    SaveGame, // later implementation
+    LoadGame // later implementation
 };
 
 class Packet
