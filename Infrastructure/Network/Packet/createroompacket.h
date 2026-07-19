@@ -1,7 +1,7 @@
 #ifndef CREATEROOMPACKET_H
 #define CREATEROOMPACKET_H
 
-#include "Network/Packet/packet.h"
+#include "../Packet/packet.h"
 #include "Domain/Enums/Enums.h"
 
 class CreateRoomPacket : public Packet

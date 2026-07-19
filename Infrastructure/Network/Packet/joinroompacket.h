@@ -1,7 +1,7 @@
 #ifndef JOINROOMPACKET_H
 #define JOINROOMPACKET_H
 
-#include "Network/Packet/packet.h"
+#include "../Packet/packet.h"
 #include <cstdint>
 #include <string>
 

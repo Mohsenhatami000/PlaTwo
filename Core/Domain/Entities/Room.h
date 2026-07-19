@@ -13,9 +13,10 @@ private:
 	RoomStatus status_;
 	ConnectionState hostConnection_;
 	std::optional<ConnectionState> guestConnection_;
+	
 
 public:
-	Room(std::int64_t id ,const Player& host , GameType type);
+	Room(std::int64_t id, const Player& host, GameType type);
 	bool join(const Player& player);
 	void leave(const std::int64_t id);
 	bool isFull() const;

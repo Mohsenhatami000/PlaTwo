@@ -1,7 +1,7 @@
 #include "Room.h"
 #include "Domain/Exceptions/Exceptions.h"
-Room::Room(std::int64_t id, const Player& host, GameType type):roomID_(id),host_(host),gameType_(type),guest_(std::nullopt),
-           hostConnection_(ConnectionState::Connected),guestConnection_(std::nullopt), status_(RoomStatus::Waiting){
+Room::Room(std::int64_t id, const Player& host, GameType type) :roomID_(id), host_(host),gameType_(type),
+                              guest_(std::nullopt), status_(RoomStatus::Waiting){
 
 }
 bool Room::join(const Player& player) {

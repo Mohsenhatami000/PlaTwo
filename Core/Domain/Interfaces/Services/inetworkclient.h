@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <string>
-#include "Network/Packet/packet.h"
+#include "../Infrastructure/Network/Packet/packet.h"
 
 class INetworkClient
 {

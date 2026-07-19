@@ -12,7 +12,7 @@ add_library(Core STATIC
     Application/UseCases/ResetPassword/ResetPasswordUseCase.h  Application/UseCases/ResetPassword/ResetPasswordUseCase.cpp
     Domain/Interfaces/Services/IResetPasswordpresenter.h
     Domain/Interfaces/Services/inetworkclient.h Domain/Interfaces/Services/inetworkclient.cpp
-)
+  "Application/UseCases/CreateRoom/CreateRoomUseCase.h" "Application/UseCases/CreateRoom/CreateRoomUseCase.cpp" "Application/UseCases/JoinRoom/JoinRoomUseCase.h" "Application/UseCases/JoinRoom/JoinRoomUseCase.cpp" "Domain/Interfaces/Services/IJoinRoomPresenter.h")
 
 target_sources(Core PRIVATE
 
@@ -92,3 +92,7 @@ target_include_directories(Core
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+target_link_libraries(Core
+    PUBLIC
+        Qt6::Core
+)
