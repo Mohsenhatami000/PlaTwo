@@ -18,3 +18,11 @@ void LobbyPage::on_pushButton_back_clicked()
     emit backToGameMenuRequested();
 }
 
+void LobbyPage::on_pushButton_create_room_clicked()
+{
+    emit createRoomRequested();
+}
+void LobbyPage::on_pushButton_join_room_clicked()
+{
+    emit joinRoomRequested();
+}

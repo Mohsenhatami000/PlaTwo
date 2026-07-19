@@ -17,9 +17,13 @@ public:
 
 signals:
     void backToGameMenuRequested();
+    void createRoomRequested();
+    void joinRoomRequested();
 
 private slots:
     void on_pushButton_back_clicked();
+    void on_pushButton_create_room_clicked();
+    void on_pushButton_join_room_clicked();
 
 private:
     Ui::LobbyPage *ui;

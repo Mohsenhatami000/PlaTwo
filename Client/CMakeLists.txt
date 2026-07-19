@@ -12,7 +12,10 @@ qt_add_executable(ClientApp
     Presentation/EditProfile/qteditprofilepresenter.h Presentation/EditProfile/qteditprofilepresenter.cpp
     Presentation/SignUp/QTSignupPresenter.h     Presentation/SignUp/QTSignupPresenter.cpp 
     Presentation/ResetPassword/QTResetPasswordPresenter.h     Presentation/ResetPassword/QTResetPasswordPresenter.cpp
-
+    Presentation/CreateRoom/CreateRoomPage.h Presentation/CreateRoom/CreateRoomPage.cpp Presentation/CreateRoom/CreateRoomPage.ui
+    Presentation/CreateRoom/QTCreateRoomPresenter.h Presentation/CreateRoom/QTCreateRoomPresenter.cpp
+    Presentation/JoinRoom/JoinRoomPage.h Presentation/JoinRoom/JoinRoomPage.cpp Presentation/JoinRoom/JoinRoomPage.ui
+    Presentation/JoinRoom/QTJoinRoomPresenter.h Presentation/JoinRoom/QTJoinRoomPresenter.cpp
 )
 
 target_link_libraries(ClientApp

@@ -4,6 +4,7 @@
 #include "Encryption/Argon2ID.h"
 #include "Repository/sqliteuserrepository.h"
 #include "sessioncontext.h"
+#include "../Infrastructure/Network/Client/qtcpnetworkclient.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,7 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     loginPage_ = new LoginPage(this);
     mainMenuPage_ = new MainMenuPage(this);
     editProfilePage_ = new EditProfilePage(this);
-
+    createRoomPage_ = new CreateRoomPage(this);
+    networkclient_ = new QTcpNetworkClient(this);
+    joinRoomPage_ = new JoinRoomPage(this);
 
     qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
     loginPresenter_ = qtLoginPresenter_;
@@ -50,6 +53,16 @@ MainWindow::MainWindow(QWidget *parent)
     resetpasswordUsecase_ = new ResetPasswordUsecase(userRepo_, hasher_, resetpasswordPresenter_);
     resetPasswordPage_->setResetpasswordUsecase(resetpasswordUsecase_);
 
+    qtCreateRoomPresenter_ = new QTCreateRoomPresenter(createRoomPage_);
+    createRoomPresenter_ = qtCreateRoomPresenter_;
+    createRoomUsecase_ = new CreateRoomUseCase(createRoomPresenter_, networkclient_);
+    createRoomPage_->setcreateRoomUseCase(createRoomUsecase_);
+
+    qtJoinRoompresenter_ = new QTJoinRoomPresenter(joinRoomPage_);
+    joinRoomPresenter_ = qtJoinRoompresenter_;
+    joinRoomUseCase_ = new JoinRoomUseCase(joinRoomPresenter_,networkclient_);
+    joinRoomPage_->setjoinRoomUseCase(joinRoomUseCase_);
+
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);
     ui->stackedWidget->addWidget(resetPasswordPage_);
@@ -57,7 +70,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->addWidget(editProfilePage_);
     ui->stackedWidget->addWidget(gameMenuPage_);
     ui->stackedWidget->addWidget(lobbyPage_);
-
+    ui->stackedWidget->addWidget(createRoomPage_);
+    ui->stackedWidget->addWidget(joinRoomPage_);
     ui->stackedWidget->setCurrentWidget(loginPage_);
 
 
@@ -145,6 +159,19 @@ MainWindow::MainWindow(QWidget *parent)
             &LobbyPage::backToGameMenuRequested,
             this,
             &MainWindow::showGameMenuPage);
+
+    connect(lobbyPage_, &LobbyPage::createRoomRequested,
+        this, &MainWindow::showCreateRoomPage);
+
+    connect(createRoomPage_, &CreateRoomPage::backToMenuRequested,
+        this, &MainWindow::showLobbyPage);
+
+    connect(lobbyPage_, &LobbyPage::joinRoomRequested,
+        this, &MainWindow::showJoinRoomPage);
+
+    connect(joinRoomPage_, &JoinRoomPage::backToMenuRequested,
+        this, &MainWindow::showLobbyPage);
+
 }
 
 void MainWindow::showSignupPage(){
@@ -177,6 +204,13 @@ void MainWindow::showLobbyPage(){
     ui->stackedWidget->setCurrentWidget(lobbyPage_);
 }
 
+void MainWindow::showCreateRoomPage() {
+    ui->stackedWidget->setCurrentWidget(createRoomPage_);
+}
+
+void MainWindow::showJoinRoomPage() {
+    ui->stackedWidget->setCurrentWidget(joinRoomPage_);
+}
 MainWindow::~MainWindow()
 {
     delete ui;

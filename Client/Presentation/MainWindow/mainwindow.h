@@ -9,6 +9,8 @@
 #include "../EditProfile/editprofilepage.h"
 #include "../GameMenu/gamemenupage.h"
 #include "../Lobby/lobbypage.h"
+#include "../CreateRoom/CreateRoomPage.h"
+#include "../JoinRoom/JoinRoomPage.h"
 #include "Domain/Interfaces/Repositories/IUserRepository.h"
 #include "Domain/Interfaces/Services/iloginpresenter.h"
 #include "../Login/QtLoginpresenter.h"
@@ -25,6 +27,14 @@
 #include "../ResetPassword/QTResetPasswordPresenter.h"
 #include "Application/UseCases/ResetPassword/ResetPasswordUsecase.h"
 #include "DataBase/databasemanager.h"
+#include "Application/UseCases/CreateRoom/CreateRoomUseCase.h"
+#include "../CreateRoom/QTCreateRoomPresenter.h"
+#include "Domain/Interfaces/Services/ICreateRoomPresenter.h"
+#include "Domain/Interfaces/Services/inetworkclient.h"
+#include "Application/UseCases/JoinRoom/JoinRoomUseCase.h"
+#include "../JoinRoom/QTJoinRoomPresenter.h"
+#include "Domain/Interfaces/Services/IJoinRoomPresenter.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -47,6 +57,8 @@ private slots:
     void showEditProfilePage();
     void showGameMenuPage();
     void showLobbyPage();
+    void showCreateRoomPage();
+    void showJoinRoomPage();
 
 private:
 
@@ -73,11 +85,27 @@ private:
     GameMenuPage *gameMenuPage_;
 
     LobbyPage *lobbyPage_;
+    
+    CreateRoomPage *createRoomPage_;
 
+    CreateRoomUseCase* createRoomUsecase_;
+
+    QTCreateRoomPresenter* qtCreateRoomPresenter_;
+
+    ICreateRoomPresenter* createRoomPresenter_;
+
+    JoinRoomPage* joinRoomPage_;
+
+    JoinRoomUseCase* joinRoomUseCase_;
+
+    QTJoinRoomPresenter* qtJoinRoompresenter_;
+
+    IJoinRoomPresenter* joinRoomPresenter_;
+    
     IUserRepository *userRepo_;
 
     DatabaseManager *db_;
-
+    
     ILoginPresenter *loginPresenter_;
 
     QtLoginPresenter *qtLoginPresenter_;
@@ -85,11 +113,11 @@ private:
     LoginUseCase *loginUseCase_;
      
     ISignupPresenter *signupPresenter_;
-
+    
     QtSignupPresenter *qtSignupPresenter_;
 
     SignupUseCase *signupUseCase_;
-
+    
     IResetPasswordPresenter *resetpasswordPresenter_;
 
     QTResetPasswordPresenter* qtResetpasswordPresenter_;
@@ -100,6 +128,7 @@ private:
 
     ISessionContext *session_;
 
+    INetworkClient* networkclient_;
 };
 
 #endif // MAINWINDOW_H
