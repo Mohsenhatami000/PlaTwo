@@ -17,6 +17,12 @@ add_library(Infrastructure STATIC
     Network/Packet/authenticatepacket.h Network/Packet/authenticatepacket.cpp
     Network/Packet/createroompacket.h Network/Packet/createroompacket.cpp
     Network/Packet/joinroompacket.h Network/Packet/joinroompacket.cpp
+    Network/Packet/readyplayerpacket.h Network/Packet/readyplayerpacket.cpp
+    Network/Packet/choosecolorpacket.h Network/Packet/choosecolorpacket.cpp
+    Network/Packet/makemovepacket.h Network/Packet/makemovepacket.cpp
+    Network/Packet/savegamepacket.h Network/Packet/savegamepacket.cpp
+    Network/Packet/loadgamepacket.h Network/Packet/loadgamepacket.cpp
+
 
 )
 
