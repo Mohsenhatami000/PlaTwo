@@ -3,7 +3,7 @@ JoinRoomUseCase::JoinRoomUseCase(IJoinRoomPresenter* pre, INetworkClient* net) :
 
 }
 void JoinRoomUseCase::execute(std::string ip , std::int64_t port) {
-	JoinRoomPacket packet(Type::JoinRoom, ip, port, port); //edits later
+	JoinRoomPacket packet(ip, port, port); //edits later
 	if (network_) {
 		network_->send(packet);
 	}

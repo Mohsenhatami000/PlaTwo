@@ -2,6 +2,8 @@
 #include <QHostAddress>
 #include "Network/Packet/packet.h"
 #include "Network/Packet/authenticatepacket.h"
+#include "Network/Packet/createroompacket.h"
+#include "Network/Packet/joinroompacket.h"
 
 QTcpNetworkServer::QTcpNetworkServer(QObject *parent): QObject(parent){
 
@@ -72,9 +74,34 @@ void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
             break;
         }
         case Type::CreateRoom:
-
+        {
+            CreateRoomPacket tmp;
+            tmp.deserialize(in);
+            static std::int64_t idcounter = 1000;
+            std::int64_t newID = ++idcounter;
+            sessionManager_.addRoomID(newID);
+            QByteArray responseBuffer;
+            QDataStream out(&responseBuffer, QIODevice::WriteOnly);
+            out << static_cast<quint8>(Type::StartGame);
+            out << true;      
+            out << newID;
+            socket->write(responseBuffer);
             break;
-
+        }
+        case Type::JoinRoom:
+        {
+            JoinRoomPacket tmp;
+            tmp.deserialize(in);
+            std::int64_t rId = tmp.roomId();
+            sessionManager_.addRoomID(rId);
+            QByteArray responseBuffer;
+            QDataStream out(&responseBuffer, QIODevice::WriteOnly);
+            out << static_cast<quint8>(Type::StartGame);
+            out << true;    
+            out << rId;  
+            socket->write(responseBuffer);
+            break;
+        }
         default:
             break;
     }
