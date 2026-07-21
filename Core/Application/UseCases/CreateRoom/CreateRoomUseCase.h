@@ -2,18 +2,20 @@
 #define CREATEROOMUSECASE_H
 #include "Domain/Interfaces/Services/ICreateRoomPresenter.h"
 #include "Domain/Interfaces/Services/inetworkclient.h"
-#include "Domain/Enums/Enums.h"
-#include "../../../../Infrastructure/Network/Packet/createroompacket.h"
+#include "Domain/Interfaces/Services/isessioncontext.h"
+
 
 class CreateRoomUseCase
 {
 private:
+
 	ICreateRoomPresenter* presenter_;
 	INetworkClient* network_;
+    ISessionContext* session_;
 
 public:
-	CreateRoomUseCase(ICreateRoomPresenter* pre,INetworkClient *net);
-	void execute(int width, int height, int timeLimit, GameType gameType);
+    CreateRoomUseCase(ICreateRoomPresenter* presenter,INetworkClient *network, ISessionContext *session);
+    void execute(int width, int height, int timeLimit);
 
 };
 

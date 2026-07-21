@@ -2,7 +2,6 @@
 #define JOINROOMPAGE_H
 #include <QWidget>
 #include "Application/UseCases/JoinRoom/JoinRoomUseCase.h"
-#include "Domain/Enums/Enums.h"
 
 namespace Ui {
     class JoinRoomPage;
@@ -25,7 +24,8 @@ signals:
 
 private slots:
     void on_pushButton_back_clicked();
-    void on_join_clicked();
+
+    void on_pushButton_join_clicked();
 
 private:
     Ui::JoinRoomPage* ui;

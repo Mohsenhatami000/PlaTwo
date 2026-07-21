@@ -16,3 +16,11 @@ void SessionContext::login(const AuthenticatedUser& user){
 void SessionContext::logout(){
     currentUser_.reset();
 }
+
+void SessionContext::setGameType(const GameType gameType){
+    gameType_ = gameType;
+}
+
+const GameType SessionContext::gameType() const{
+    return gameType_;
+}

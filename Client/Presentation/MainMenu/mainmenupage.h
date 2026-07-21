@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Application/UseCases/EditProfile/loadeditprofileusecase.h"
+#include "Domain/Interfaces/Services/isessioncontext.h"
 
 namespace Ui {
 class MainMenuPage;
@@ -12,9 +13,10 @@ class MainMenuPage : public QWidget
 {
     Q_OBJECT
     LoadEditProfileUseCase *loadEditProfileUseCase_;
+    ISessionContext *session_;
 
 public:
-    explicit MainMenuPage(QWidget *parent = nullptr);
+    explicit MainMenuPage(ISessionContext *session, QWidget *parent = nullptr);
     void setLoadEditProfileUseCase(LoadEditProfileUseCase *loadEditProfileUseCase);
     ~MainMenuPage();
 signals:
@@ -28,6 +30,7 @@ private slots:
     void on_pushButton_quit_clicked();
 
     void on_pushButton_edit_profile_clicked();
+
 
     void on_pushButton_dots_and_boxes_clicked();
 

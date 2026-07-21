@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <string>
-#include "Network/Packet/packet.h"
+#include "../Packet/packet.h"
 
 class AuthenticatePacket : public Packet
 {

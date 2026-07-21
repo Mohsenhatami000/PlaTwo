@@ -24,6 +24,7 @@ add_library(Infrastructure STATIC
     Network/Packet/loadgamepacket.h Network/Packet/loadgamepacket.cpp
 
 
+
 )
 
 target_link_libraries(Infrastructure

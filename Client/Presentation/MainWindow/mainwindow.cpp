@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     signUpPage_ = new SignUpPage(this);
     resetPasswordPage_ = new ResetPasswordPage(this);
     loginPage_ = new LoginPage(this);
-    mainMenuPage_ = new MainMenuPage(this);
+    mainMenuPage_ = new MainMenuPage(session_, this);
     editProfilePage_ = new EditProfilePage(this);
     createRoomPage_ = new CreateRoomPage(this);
     networkclient_ = new QTcpNetworkClient(this);
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     qtCreateRoomPresenter_ = new QTCreateRoomPresenter(createRoomPage_);
     createRoomPresenter_ = qtCreateRoomPresenter_;
-    createRoomUsecase_ = new CreateRoomUseCase(createRoomPresenter_, networkclient_);
+    createRoomUsecase_ = new CreateRoomUseCase(createRoomPresenter_, networkclient_, session_);
     createRoomPage_->setcreateRoomUseCase(createRoomUsecase_);
 
     qtJoinRoompresenter_ = new QTJoinRoomPresenter(joinRoomPage_);
@@ -163,7 +163,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(lobbyPage_, &LobbyPage::createRoomRequested,
         this, &MainWindow::showCreateRoomPage);
 
-    connect(createRoomPage_, &CreateRoomPage::backToMenuRequested,
+    connect(createRoomPage_, &CreateRoomPage::backToLobbyRequested,
         this, &MainWindow::showLobbyPage);
 
     connect(lobbyPage_, &LobbyPage::joinRoomRequested,

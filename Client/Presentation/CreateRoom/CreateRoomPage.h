@@ -2,7 +2,7 @@
 #define CREATEROOMPAGE_H
 #include <QWidget>
 #include "Application/UseCases/CreateRoom/CreateRoomUseCase.h"
-#include "Domain/Enums/Enums.h"
+
 
 namespace Ui {
     class CreateRoomPage;
@@ -20,12 +20,15 @@ public:
     ~CreateRoomPage();
 
 signals:
-    void backToMenuRequested();
+    void backToLobbyRequested();
     
 
 private slots:
     void on_pushButton_back_clicked();
-    void on_create_clicked();
+
+    void on_pushButton_create_clicked();
+
+    void on_checkBox_time_limit_checkStateChanged(const Qt::CheckState &arg1);
 
 private:
     Ui::CreateRoomPage *ui;

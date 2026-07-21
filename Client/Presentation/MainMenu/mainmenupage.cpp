@@ -1,10 +1,11 @@
 #include "mainmenupage.h"
 #include "ui_mainmenupage.h"
 
-MainMenuPage::MainMenuPage(QWidget *parent)
+MainMenuPage::MainMenuPage(ISessionContext *session, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainMenuPage)
 {
+    session_ = session;
     ui->setupUi(this);
 }
 
@@ -28,18 +29,21 @@ void MainMenuPage::on_pushButton_edit_profile_clicked()
 
 void MainMenuPage::on_pushButton_dots_and_boxes_clicked()
 {
+    session_->setGameType(GameType::DotsAndBoxes);
     emit dotsAndBoxesRequested();
 }
 
 
 void MainMenuPage::on_pushButton_nine_mens_morris_clicked()
 {
+    session_->setGameType(GameType::Mills);
     emit nineMensMorrisRequested();
 }
 
 
 void MainMenuPage::on_pushButton_fanorona_clicked()
 {
+    session_->setGameType(GameType::Fanorona);
     emit fanoronaRequested();
 }
 

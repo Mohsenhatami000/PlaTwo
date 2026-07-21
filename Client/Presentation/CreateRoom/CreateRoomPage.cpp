@@ -1,5 +1,5 @@
 #include "CreateRoomPage.h"
-#include "ui_CreateRoomPage.h"
+#include "Presentation/CreateRoom/ui_CreateRoomPage.h"
 
 CreateRoomPage::CreateRoomPage(QWidget* parent)
     : QWidget(parent)
@@ -19,14 +19,28 @@ void CreateRoomPage::setcreateRoomUseCase(CreateRoomUseCase* useCase) {
     createRoomUseCase_ = useCase;
 }
 void CreateRoomPage::on_pushButton_back_clicked() {
-    emit backToMenuRequested();
+    emit backToLobbyRequested();
 }
-void CreateRoomPage::on_create_clicked() {
+
+void CreateRoomPage::on_pushButton_create_clicked()
+{
     int width = ui->spinBox_width->value();
     int height = ui->spinBox_height->value();
-    int timeLimit = ui->horizontalSlider_time->value();
-    GameType gameType = static_cast<GameType>(ui->comboBox_type->currentData().toInt());
-    if (createRoomUseCase_) {
-        createRoomUseCase_->execute(width, height, timeLimit, gameType);
+    int timeLimit;
+    if(ui->checkBox_time_limit->isChecked()){
+        timeLimit = ui->spinBox_time->value();
     }
+    else{
+        timeLimit = 0;
+    }
+
+    createRoomUseCase_->execute(width, height, timeLimit);
+
 }
+
+
+void CreateRoomPage::on_checkBox_time_limit_checkStateChanged(const Qt::CheckState &arg1)
+{
+    ui->spinBox_time->setEnabled(arg1);
+}
+

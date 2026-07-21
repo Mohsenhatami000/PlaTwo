@@ -12,7 +12,7 @@ void SessionManager::initSession(QTcpSocket *socket){
     clientCounter++;
 }
 
-void SessionManager::addRoomID(std::int64_t id) {
+void SessionManager::addRoomID(std::int64_t id){
 
 }
 
