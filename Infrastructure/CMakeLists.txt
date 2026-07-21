@@ -9,6 +9,21 @@ add_library(Infrastructure STATIC
     Encryption/src/blake2/blake2b.c
     Repository/sqliteuserrepository.h Repository/sqliteuserrepository.cpp
     DataBase/databasemanager.h DataBase/databasemanager.cpp
+    Network/Server/qtcpnetworkserver.h Network/Server/qtcpnetworkserver.cpp
+    Network/Client/qtcpnetworkclient.h Network/Client/qtcpnetworkclient.cpp
+    Network/Packet/packet.h Network/Packet/packet.cpp
+    Session/clientsession.h Session/clientsession.cpp
+    Session/sessionmanager.h Session/sessionmanager.cpp
+    Network/Packet/authenticatepacket.h Network/Packet/authenticatepacket.cpp
+    Network/Packet/createroompacket.h Network/Packet/createroompacket.cpp
+    Network/Packet/joinroompacket.h Network/Packet/joinroompacket.cpp
+    Network/Packet/readyplayerpacket.h Network/Packet/readyplayerpacket.cpp
+    Network/Packet/choosecolorpacket.h Network/Packet/choosecolorpacket.cpp
+    Network/Packet/makemovepacket.h Network/Packet/makemovepacket.cpp
+    Network/Packet/savegamepacket.h Network/Packet/savegamepacket.cpp
+    Network/Packet/loadgamepacket.h Network/Packet/loadgamepacket.cpp
+
+
 )
 
 target_link_libraries(Infrastructure
@@ -17,6 +32,7 @@ target_link_libraries(Infrastructure
         Qt6::Core
         Qt6::Widgets
         Qt6::Sql
+        Qt6::Network
     PRIVATE
         bcrypt
 
