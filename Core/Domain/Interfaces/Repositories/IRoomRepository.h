@@ -1,6 +1,6 @@
 #pragma once
 #include <optional>
-#include "Entities/Room.h"
+#include "Domain/Entities/Room.h"
 class IRoomRepository
 {
 public:

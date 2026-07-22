@@ -1,27 +1,15 @@
 #include "Room.h"
 #include "Domain/Exceptions/Exceptions.h"
-Room::Room(std::int64_t id, const Player& host, GameType type) :roomID_(id), host_(host),gameType_(type),
-                              guest_(std::nullopt), status_(RoomStatus::Waiting){
-
+Room::Room(std::int64_t player,std::int64_t id, int width, int height, int timeLimit, GameType type) :roomID_(id), width_(width),height_(height),
+  timeLimit_(timeLimit), gameType_(type),host_(player){
+	
 }
-bool Room::join(const Player& player) {
-	if (this->status_ == RoomStatus::Closed) {
-		throw Exceptions(DomainError::RoomIsClosed);
-	}
-	if (!isFull() && hostConnection_ == ConnectionState::Disconnected) {
-		throw Exceptions(DomainError::HostDisconnected);
-	}
-	if (guest_.has_value()){
-		throw Exceptions(DomainError::RoomIsFull);
-	}
-	if (player.pID() == host_.pID()) {
-		throw Exceptions(DomainError::RoomNotHostTwice);
-	}
-	guest_ = player;
-	guestConnection_ = ConnectionState::Connected;
-	status_ = RoomStatus::Ready;
+
+bool Room::join(Player player) {
+	guest_.emplace(player);
 	return true;
 }
+/**
 void Room::leave(const std::int64_t id) {
 	if (id == host_.pID()) {
 		close();
@@ -60,16 +48,17 @@ void Room::close() {
 	guest_.reset();
 	guestConnection_.reset();
 	status_ = RoomStatus::Closed;
-}
+}**/
 std::int64_t Room::rID() const noexcept {
 	return roomID_;
 }
-const Player& Room::host() const noexcept {
+const Player Room::host() const noexcept {
 	return host_;
 }
 GameType Room::game() const noexcept {
 	return gameType_;
 }
+/**
 RoomStatus Room::status() const noexcept {
 	return status_;
 }
@@ -113,6 +102,7 @@ bool Room::isHostConnected() const noexcept {
 bool Room::isGuestConnected() const noexcept {
 	return guestConnection_.has_value() && *guestConnection_ == ConnectionState::Connected;
 }
-const std::optional<Player>& Room::guest() const noexcept {
+**/
+const std::optional<Player> Room::guest() const noexcept {
 	return guest_;
 }

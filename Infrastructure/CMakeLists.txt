@@ -22,7 +22,7 @@ add_library(Infrastructure STATIC
     Network/Packet/makemovepacket.h Network/Packet/makemovepacket.cpp
     Network/Packet/savegamepacket.h Network/Packet/savegamepacket.cpp
     Network/Packet/loadgamepacket.h Network/Packet/loadgamepacket.cpp
-
+    Manager/RoomManager.h Manager/RoomManager.cpp
 
 
 )
