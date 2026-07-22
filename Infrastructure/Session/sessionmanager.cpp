@@ -23,3 +23,11 @@ void SessionManager::addUserInformation(QTcpSocket *socket, std::int64_t ID, std
 void SessionManager::removeSession(QTcpSocket *socket){
     Sessions_.erase(socket);
 }
+
+std::optional<std::int64_t> SessionManager::getUserIDBySocket(QTcpSocket* socket) {
+    auto it = Sessions_.find(socket);
+    if (it != Sessions_.end() && it->second != nullptr) {
+        return it->second->getUserID();
+    }
+    return std::nullopt;  
+}

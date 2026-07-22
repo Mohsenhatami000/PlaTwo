@@ -2,7 +2,7 @@
 #define SESSIONMANAGER_H
 
 #include "Session/clientsession.h"
-
+#include <optional>
 
 
 class SessionManager
@@ -18,7 +18,7 @@ public:
     void addUserInformation(QTcpSocket *socket, std::int64_t ID, std::string name, std::string username);
     void addRoomID(std::int64_t roomID);
     int getClientCounter() const;
-
+    std::optional<std::int64_t> getUserIDBySocket(QTcpSocket* socket);
 
 
 };

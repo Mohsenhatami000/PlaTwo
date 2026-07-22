@@ -1,4 +1,5 @@
 #include "clientsession.h"
+#include "clientsession.h"
 
 // ClientSession::ClientSession(std::int64_t ID
 //                              , std::string name
@@ -31,4 +32,8 @@ QTcpSocket* ClientSession::getSocket() const{
 
 void ClientSession::initRoomId(std::int64_t roomID){
     roomID_ = roomID;
+}
+
+std::int64_t ClientSession::getUserID() const {
+    return authUser_->id();
 }

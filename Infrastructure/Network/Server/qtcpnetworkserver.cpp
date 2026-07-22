@@ -80,6 +80,8 @@ void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
             static std::int64_t idcounter = 1000;
             std::int64_t newID = ++idcounter;
             sessionManager_.addRoomID(newID);
+            auto hostScoket = sessionManager_.getUserIDBySocket(socket);
+            roomManager_.createRoom(hostScoket.value(), newID, tmp.width(), tmp.height(), tmp.timeLimit(), tmp.gameType());
             QByteArray responseBuffer;
             QDataStream out(&responseBuffer, QIODevice::WriteOnly);
             out << static_cast<quint8>(Type::StartGame);
@@ -94,6 +96,8 @@ void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
             tmp.deserialize(in);
             std::int64_t rId = tmp.roomId();
             sessionManager_.addRoomID(rId);
+            auto guestSocket = sessionManager_.getUserIDBySocket(socket);
+            roomManager_.joinRoom(guestSocket.value(), tmp.IP(), tmp.port(), tmp.roomId());
             QByteArray responseBuffer;
             QDataStream out(&responseBuffer, QIODevice::WriteOnly);
             out << static_cast<quint8>(Type::StartGame);

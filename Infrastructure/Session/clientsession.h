@@ -29,6 +29,7 @@ public:
     void initAuthUser(std::int64_t ID, const std::string name, const std::string username);
     void initRoomId(std::int64_t roomID);
     QTcpSocket* getSocket() const;
+    std::int64_t getUserID() const;
 
 };
 
