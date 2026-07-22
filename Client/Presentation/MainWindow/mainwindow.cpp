@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     qtJoinRoompresenter_ = new QTJoinRoomPresenter(joinRoomPage_);
     joinRoomPresenter_ = qtJoinRoompresenter_;
-    joinRoomUseCase_ = new JoinRoomUseCase(joinRoomPresenter_,networkclient_);
+    joinRoomUseCase_ = new JoinRoomUseCase(joinRoomPresenter_,networkclient_,session_);
     joinRoomPage_->setjoinRoomUseCase(joinRoomUseCase_);
 
     ui->stackedWidget->addWidget(signUpPage_);
