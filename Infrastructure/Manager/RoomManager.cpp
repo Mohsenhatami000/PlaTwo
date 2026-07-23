@@ -33,3 +33,12 @@ void RoomManager::joinRoom(std::int64_t player ,std::string ip, std::int64_t por
 	auto& room = it->second;
 	room.join(Player(player));
 }
+
+void RoomManager::setColor(std::int64_t player,std::string color,std::int64_t id) {
+	auto it = rooms_.find(id);
+	if (it == rooms_.end()) {
+		return;
+	}
+	it->second.setColor(player,color);
+}
+

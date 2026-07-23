@@ -17,6 +17,9 @@ public:
 	std::optional<Room> findByID(std::int64_t id) const override;
 	void createRoom(std::int64_t player, std::int64_t id,int w , int h , int time ,GameType type);
 	void joinRoom(std::int64_t player ,std::string ip , std::int64_t port , std::int64_t id);
+	void setColor(std::int64_t player ,std::string color, std::int64_t id);
+
+	
 
 };
 #endif // !ROOMMANAGER_H
