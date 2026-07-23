@@ -4,7 +4,8 @@
 #include "Network/Packet/authenticatepacket.h"
 #include "Network/Packet/createroompacket.h"
 #include "Network/Packet/joinroompacket.h"
-
+#include "Network/Packet/choosecolorpacket.h"
+ 
 QTcpNetworkServer::QTcpNetworkServer(QObject *parent): QObject(parent){
 
     server_ = new QTcpServer(this);
@@ -103,6 +104,18 @@ void QTcpNetworkServer::onReadyRead(QTcpSocket *socket){
             out << static_cast<quint8>(Type::StartGame);
             out << true;    
             out << rId;  
+            socket->write(responseBuffer);
+            break;
+        }
+        case Type::ChooseColor:
+        {
+            ChooseColorPacket tmp;
+            tmp.deserialize(in);
+            auto Asocket = sessionManager_.getUserIDBySocket(socket);
+            roomManager_.setColor(Asocket.value(), tmp.color(), tmp.roomID());
+            QByteArray responseBuffer;
+            QDataStream out(&responseBuffer, QIODevice::WriteOnly);
+            out << static_cast<quint8>(Type::ChooseColor);
             socket->write(responseBuffer);
             break;
         }

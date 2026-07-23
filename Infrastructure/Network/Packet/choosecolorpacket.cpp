@@ -2,8 +2,9 @@
 #include <QString>
 ChooseColorPacket::ChooseColorPacket(): Packet(Type::ChooseColor){};
 
-ChooseColorPacket::ChooseColorPacket(std::string color): Packet(Type::ChooseColor){
+ChooseColorPacket::ChooseColorPacket(std::string color,std::int64_t id): Packet(Type::ChooseColor){
     color_ = color;
+    roomID_ = id;
 }
 
 void ChooseColorPacket::serialize(QDataStream &out) const{
@@ -19,4 +20,8 @@ void ChooseColorPacket::deserialize(QDataStream &in){
 
 std::string ChooseColorPacket::color() const{
     return color_;
+}
+
+std::int64_t ChooseColorPacket::roomID() const {
+    return roomID_;
 }
