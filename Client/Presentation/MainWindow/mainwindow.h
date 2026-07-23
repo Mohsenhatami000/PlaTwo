@@ -34,6 +34,9 @@
 #include "Application/UseCases/JoinRoom/JoinRoomUseCase.h"
 #include "../JoinRoom/QTJoinRoomPresenter.h"
 #include "Domain/Interfaces/Services/IJoinRoomPresenter.h"
+#include "Application/UseCases/WaitingRoom/WaitingRoomUseCase.h"
+#include "../WaitingRoom/QTWaitingRoomPresenter.h"
+#include "Domain/Interfaces/Services/IWaitingRoomPresenter.h"
 
 
 namespace Ui {
@@ -59,6 +62,7 @@ private slots:
     void showLobbyPage();
     void showCreateRoomPage();
     void showJoinRoomPage();
+    void showWaitingRoomPage();
 
 private:
 
@@ -129,6 +133,14 @@ private:
     ISessionContext *session_;
 
     INetworkClient* networkclient_;
+
+    WaitingRoomPage  *waitingRoomPage_;
+
+    WaitingRoomUseCase *waitingRoomUseCase_;
+
+    QTWaitingRoomPresenter* qtWaitingRoomPresenter_;
+
+    IWaitingRoomPresenter* waitingRoomPresenter_;
 };
 
 #endif // MAINWINDOW_H

@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     createRoomPage_ = new CreateRoomPage(this);
     networkclient_ = new QTcpNetworkClient(this);
     joinRoomPage_ = new JoinRoomPage(this);
+    waitingRoomPage_ = new WaitingRoomPage(this);
 
     qtLoginPresenter_ = new QtLoginPresenter(loginPage_);
     loginPresenter_ = qtLoginPresenter_;
@@ -63,6 +64,11 @@ MainWindow::MainWindow(QWidget *parent)
     joinRoomUseCase_ = new JoinRoomUseCase(joinRoomPresenter_,networkclient_,session_);
     joinRoomPage_->setjoinRoomUseCase(joinRoomUseCase_);
 
+    qtWaitingRoomPresenter_ = new QTWaitingRoomPresenter(waitingRoomPage_);
+    waitingRoomPresenter_ = qtWaitingRoomPresenter_;
+    waitingRoomUseCase_ = new WaitingRoomUseCase(waitingRoomPresenter_, networkclient_, session_);
+    waitingRoomPage_->setwaitingRoomUseCase(waitingRoomUseCase_);
+
     ui->stackedWidget->addWidget(signUpPage_);
     ui->stackedWidget->addWidget(loginPage_);
     ui->stackedWidget->addWidget(resetPasswordPage_);
@@ -72,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->addWidget(lobbyPage_);
     ui->stackedWidget->addWidget(createRoomPage_);
     ui->stackedWidget->addWidget(joinRoomPage_);
+    ui->stackedWidget->addWidget(waitingRoomPage_);
     ui->stackedWidget->setCurrentWidget(loginPage_);
 
 
@@ -171,6 +178,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(joinRoomPage_, &JoinRoomPage::backToMenuRequested,
         this, &MainWindow::showLobbyPage);
+    
+    connect(qtCreateRoomPresenter_, &QTCreateRoomPresenter::createRoomSuccessed, 
+        this, &MainWindow::showWaitingRoomPage);
+
+    connect(qtJoinRoompresenter_, &QTJoinRoomPresenter::JoinRoomSuccessed,
+        this, &MainWindow::showWaitingRoomPage);
 
 }
 
@@ -211,6 +224,11 @@ void MainWindow::showCreateRoomPage() {
 void MainWindow::showJoinRoomPage() {
     ui->stackedWidget->setCurrentWidget(joinRoomPage_);
 }
+
+void MainWindow::showWaitingRoomPage() {
+    ui->stackedWidget->setCurrentWidget(waitingRoomPage_);
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
