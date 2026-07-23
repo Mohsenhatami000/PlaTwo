@@ -8,6 +8,7 @@ private:
 	bool p_isReady_;
 	
 public:
+	Player() = default;
 	Player(std::int64_t id);
 	const std::int64_t pID() const noexcept;
 	int pScore() const noexcept;
