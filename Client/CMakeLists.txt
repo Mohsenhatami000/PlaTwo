@@ -16,6 +16,8 @@ qt_add_executable(ClientApp
     Presentation/CreateRoom/QTCreateRoomPresenter.h Presentation/CreateRoom/QTCreateRoomPresenter.cpp
     Presentation/JoinRoom/JoinRoomPage.h Presentation/JoinRoom/JoinRoomPage.cpp Presentation/JoinRoom/JoinRoomPage.ui
     Presentation/JoinRoom/QTJoinRoomPresenter.h Presentation/JoinRoom/QTJoinRoomPresenter.cpp
+    Presentation/WaitingRoom/WaitingRoomPage.h  Presentation/WaitingRoom/WaitingRoomPage.cpp Presentation/WaitingRoom/WaitingRoomPage.ui
+    Presentation/WaitingRoom/QTWaitingRoomPresenter.h Presentation/WaitingRoom/QTWaitingRoomPresenter.cpp
 )
 
 target_link_libraries(ClientApp

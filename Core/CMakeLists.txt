@@ -12,7 +12,12 @@ add_library(Core STATIC
     Application/UseCases/ResetPassword/ResetPasswordUseCase.h  Application/UseCases/ResetPassword/ResetPasswordUseCase.cpp
     Domain/Interfaces/Services/IResetPasswordpresenter.h
     Domain/Interfaces/Services/inetworkclient.h Domain/Interfaces/Services/inetworkclient.cpp
-  "Application/UseCases/CreateRoom/CreateRoomUseCase.h" "Application/UseCases/CreateRoom/CreateRoomUseCase.cpp" "Application/UseCases/JoinRoom/JoinRoomUseCase.h" "Application/UseCases/JoinRoom/JoinRoomUseCase.cpp" "Domain/Interfaces/Services/IJoinRoomPresenter.h")
+    Application/UseCases/CreateRoom/CreateRoomUseCase.h Application/UseCases/CreateRoom/CreateRoomUseCase.cpp 
+    Application/UseCases/JoinRoom/JoinRoomUseCase.h Application/UseCases/JoinRoom/JoinRoomUseCase.cpp 
+    Domain/Interfaces/Services/IJoinRoomPresenter.h
+    Application/UseCases/WaitingRoom/WaitingRoomUseCase.h  Application/UseCases/WaitingRoom/WaitingRoomUseCase.cpp 
+
+)
 
 target_sources(Core PRIVATE
 
