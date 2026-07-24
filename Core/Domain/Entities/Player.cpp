@@ -29,3 +29,7 @@ void Player::resetScore() {
 bool Player::operator==(const Player& player) const {
 	return player.pID() == p_ID_;
 }
+
+const UserName& Player::pUserName() const noexcept {
+    return p_username_;
+}

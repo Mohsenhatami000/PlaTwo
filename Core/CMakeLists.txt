@@ -12,6 +12,12 @@ add_library(Core STATIC
     Application/UseCases/ResetPassword/ResetPasswordUseCase.h  Application/UseCases/ResetPassword/ResetPasswordUseCase.cpp
     Domain/Interfaces/Services/IResetPasswordpresenter.h
     Domain/Interfaces/Services/inetworkclient.h Domain/Interfaces/Services/inetworkclient.cpp
+    Domain/Games/iboard.h Domain/Games/iboard.cpp
+    Domain/Games/igame.h Domain/Games/igame.cpp
+    Domain/Games/Imove.h Domain/Games/Imove.cpp
+    Domain/Games/iruleengine.h Domain/Games/iruleengine.cpp
+    Domain/Games/gamesetting.h Domain/Games/gamesetting.cpp
+
 )
 
 target_sources(Core PRIVATE

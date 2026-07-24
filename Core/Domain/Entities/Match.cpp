@@ -1,17 +1,28 @@
 #include "Match.h"
 #include "Domain/Exceptions/Exceptions.h"
-Match::Match(std::int64_t id, const Player& host, const Player& guest, GameType type):matchID_(id),host_(host)
-            ,guest_(guest),gameType_(type),status_(MatchStatus::NotStarted){
+#include "Domain/Games/Dots & Boxes/dotsgame.h"
 
+Match::Match(std::int64_t id, const Player& host, const Player& guest, GameSetting setting)
+    :matchID_(id)
+    , host_(host)
+    , guest_(guest)
+    , status_(MatchStatus::NotStarted)
+    , setting_(setting)
+    , game_(nullptr){
+    if(setting_.gameType() == GameType::DotsAndBoxes){
+        game_ = new DotsGame(DotsBoard(setting_.height(), setting_.width()), Turn::Host);
+    }
 }
+
+
 std::int64_t Match::mID() const noexcept {
     return matchID_;
 }
 const Player& Match::host() const noexcept {
     return host_;
 }
-GameType Match::game() const noexcept {
-    return gameType_;
+IGame* Match::game() noexcept {
+    return game_;
 }
 MatchStatus Match::status() const noexcept {
     return status_;
