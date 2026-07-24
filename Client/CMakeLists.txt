@@ -12,6 +12,7 @@ qt_add_executable(ClientApp
     Presentation/EditProfile/qteditprofilepresenter.h Presentation/EditProfile/qteditprofilepresenter.cpp
     Presentation/SignUp/QTSignupPresenter.h     Presentation/SignUp/QTSignupPresenter.cpp 
     Presentation/ResetPassword/QTResetPasswordPresenter.h     Presentation/ResetPassword/QTResetPasswordPresenter.cpp
+    "Presentation/Dots & Boxes/dotspage.h" "Presentation/Dots & Boxes/dotspage.cpp" "Presentation/Dots & Boxes/dotspage.ui"
 
 )
 
@@ -21,6 +22,7 @@ target_link_libraries(ClientApp
         Qt6::Network
         Qt6::Core
         Qt6::Sql
+        Qt6::Gui
         Core
         Infrastructure
 )
