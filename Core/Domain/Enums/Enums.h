@@ -85,3 +85,9 @@ enum class ConnectionState
 	Connected,
 	Disconnected
 };
+
+enum class Direction
+{
+    Horizontal,
+    Vertical
+};

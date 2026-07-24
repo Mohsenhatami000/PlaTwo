@@ -16,6 +16,10 @@ add_library(Core STATIC
     Domain/Games/igame.h Domain/Games/igame.cpp
     Domain/Games/Imove.h Domain/Games/Imove.cpp
     Domain/Games/iruleengine.h Domain/Games/iruleengine.cpp
+    "Domain/Games/Dots & Boxes/dotsboard.h" "Domain/Games/Dots & Boxes/dotsboard.cpp"
+    "Domain/Games/Dots & Boxes/dotsmove.h" "Domain/Games/Dots & Boxes/dotsmove.cpp"
+    "Domain/Games/Dots & Boxes/dotsruleengine.h" "Domain/Games/Dots & Boxes/dotsruleengine.cpp"
+    "Domain/Games/Dots & Boxes/dotsgame.h" "Domain/Games/Dots & Boxes/dotsgame.cpp"
     Domain/Games/gamesetting.h Domain/Games/gamesetting.cpp
 
 )
